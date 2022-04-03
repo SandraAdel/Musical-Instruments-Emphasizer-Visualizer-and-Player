@@ -14,6 +14,10 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        # self.ui.verticalSlider.setTickPosition(QtWidgets.QSlider.TicksRight)
+        self.ui.verticalSlider.setMaximum(40)
+        self.ui.verticalSlider.setMinimum(0)
+        self.ui.verticalSlider.setValue(4)
         # Variables Initialization
      
 
