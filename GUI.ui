@@ -182,7 +182,11 @@
            <string notr="true">QPushButton{
 border-radius:20px;
 	
-}</string>
+}
+QPushButton:hover{
+ background-color: rgb(229,229,229);
+}
+</string>
           </property>
           <property name="text">
            <string/>
@@ -199,7 +203,11 @@ border-radius:20px;
            <string notr="true">QPushButton{
 border-radius:20px;
 	
-}</string>
+}
+QPushButton:hover{
+ background-color: rgb(229,229,229);
+}
+</string>
           </property>
           <property name="text">
            <string/>

@@ -106,7 +106,11 @@ class Ui_MainWindow(object):
         self.pushButton_23.setStyleSheet("QPushButton{\n"
 "border-radius:20px;\n"
 "    \n"
-"}")
+"}\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}\n"
+"")
         self.pushButton_23.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("icons/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -117,7 +121,11 @@ class Ui_MainWindow(object):
         self.pushButton_24.setStyleSheet("QPushButton{\n"
 "border-radius:20px;\n"
 "    \n"
-"}")
+"}\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}\n"
+"")
         self.pushButton_24.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -488,7 +496,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
 from pyqtgraph import PlotWidget
-# import images_rc
+
 
 
 if __name__ == "__main__":
