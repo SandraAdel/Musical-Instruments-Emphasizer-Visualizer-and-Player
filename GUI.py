@@ -36,78 +36,77 @@ class Slider(QtWidgets.QSlider):
         return QtWidgets.QStyle.sliderValueFromPosition(self.minimum(), self.maximum(), p - sliderMin,
                                                sliderMax - sliderMin, opt.upsideDown)
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1492, 873)
+        MainWindow.resize(1497, 922)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget.setGeometry(QtCore.QRect(10, 0, 1471, 821))
-        self.tabWidget.setStyleSheet("")
-        self.tabWidget.setObjectName("tabWidget")
-        self.tab = QtWidgets.QWidget()
-        self.tab.setObjectName("tab")
-        self.gridLayoutWidget = QtWidgets.QWidget(self.tab)
+        self.MainTabWidget = QtWidgets.QTabWidget(self.centralwidget)
+        self.MainTabWidget.setGeometry(QtCore.QRect(10, 0, 1471, 871))
+        self.MainTabWidget.setStyleSheet("")
+        self.MainTabWidget.setObjectName("MainTabWidget")
+        self.PlayerAndEmphasizerTab = QtWidgets.QWidget()
+        self.PlayerAndEmphasizerTab.setObjectName("PlayerAndEmphasizerTab")
+        self.gridLayoutWidget = QtWidgets.QWidget(self.PlayerAndEmphasizerTab)
         self.gridLayoutWidget.setGeometry(QtCore.QRect(20, 10, 1431, 401))
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
-        self.gridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.graphicsView = PlotWidget(self.gridLayoutWidget)
+        self.SongSpectrogramGridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget)
+        self.SongSpectrogramGridLayout.setContentsMargins(0, 0, 0, 0)
+        self.SongSpectrogramGridLayout.setObjectName("SongSpectrogramGridLayout")
+        self.SongGraphGraphicsView = PlotWidget(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
-        self.graphicsView.setSizePolicy(sizePolicy)
-        self.graphicsView.setStyleSheet("background-color: rgb(0, 0, 0);")
-        self.graphicsView.setObjectName("graphicsView")
-        self.gridLayout.addWidget(self.graphicsView, 1, 0, 1, 1)
-        self.label_7 = QtWidgets.QLabel(self.gridLayoutWidget)
+        sizePolicy.setHeightForWidth(self.SongGraphGraphicsView.sizePolicy().hasHeightForWidth())
+        self.SongGraphGraphicsView.setSizePolicy(sizePolicy)
+        self.SongGraphGraphicsView.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.SongGraphGraphicsView.setObjectName("SongGraphGraphicsView")
+        self.SongSpectrogramGridLayout.addWidget(self.SongGraphGraphicsView, 1, 0, 1, 1)
+        self.SongGraphTextLabel = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Georgia")
         font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
-        self.label_7.setFont(font)
-        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_7.setObjectName("label_7")
-        self.gridLayout.addWidget(self.label_7, 0, 0, 1, 1)
-        self.graphicsView_2 = PlotWidget(self.gridLayoutWidget)
+        self.SongGraphTextLabel.setFont(font)
+        self.SongGraphTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.SongGraphTextLabel.setObjectName("SongGraphTextLabel")
+        self.SongSpectrogramGridLayout.addWidget(self.SongGraphTextLabel, 0, 0, 1, 1)
+        self.SpectrogramGraphGraphicsView = PlotWidget(self.gridLayoutWidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.graphicsView_2.sizePolicy().hasHeightForWidth())
-        self.graphicsView_2.setSizePolicy(sizePolicy)
-        self.graphicsView_2.setStyleSheet("background-color: rgb(0, 0, 0);")
-        self.graphicsView_2.setObjectName("graphicsView_2")
-        self.gridLayout.addWidget(self.graphicsView_2, 1, 1, 1, 1)
-        self.label_8 = QtWidgets.QLabel(self.gridLayoutWidget)
+        sizePolicy.setHeightForWidth(self.SpectrogramGraphGraphicsView.sizePolicy().hasHeightForWidth())
+        self.SpectrogramGraphGraphicsView.setSizePolicy(sizePolicy)
+        self.SpectrogramGraphGraphicsView.setStyleSheet("background-color: rgb(0, 0, 0);")
+        self.SpectrogramGraphGraphicsView.setObjectName("SpectrogramGraphGraphicsView")
+        self.SongSpectrogramGridLayout.addWidget(self.SpectrogramGraphGraphicsView, 1, 1, 1, 1)
+        self.SpectrogramGraphTextLabel = QtWidgets.QLabel(self.gridLayoutWidget)
         font = QtGui.QFont()
         font.setFamily("Georgia")
         font.setPointSize(13)
         font.setBold(True)
         font.setWeight(75)
-        self.label_8.setFont(font)
-        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_8.setObjectName("label_8")
-        self.gridLayout.addWidget(self.label_8, 0, 1, 1, 1)
-        self.gridLayout_2 = QtWidgets.QGridLayout()
-        self.gridLayout_2.setObjectName("gridLayout_2")
-        self.pushButton_25 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_25.setStyleSheet("QPushButton{\n"
+        self.SpectrogramGraphTextLabel.setFont(font)
+        self.SpectrogramGraphTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.SpectrogramGraphTextLabel.setObjectName("SpectrogramGraphTextLabel")
+        self.SongSpectrogramGridLayout.addWidget(self.SpectrogramGraphTextLabel, 0, 1, 1, 1)
+        self.PlayPauseVolumeGridLayout = QtWidgets.QGridLayout()
+        self.PlayPauseVolumeGridLayout.setObjectName("PlayPauseVolumeGridLayout")
+        self.VolumeIconPushButton = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.VolumeIconPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:20px;\n"
 "    \n"
 "}")
-        self.pushButton_25.setText("")
+        self.VolumeIconPushButton.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("icons/speaker-filled-audio-tool.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_25.setIcon(icon)
-        self.pushButton_25.setObjectName("pushButton_25")
-        self.gridLayout_2.addWidget(self.pushButton_25, 0, 2, 1, 1)
-        self.pushButton_23 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_23.setStyleSheet("QPushButton{\n"
+        self.VolumeIconPushButton.setIcon(icon)
+        self.VolumeIconPushButton.setObjectName("VolumeIconPushButton")
+        self.PlayPauseVolumeGridLayout.addWidget(self.VolumeIconPushButton, 0, 2, 1, 1)
+        self.PlayPushButton = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.PlayPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:20px;\n"
 "    \n"
 "}\n"
@@ -115,14 +114,14 @@ class Ui_MainWindow(object):
 " background-color: rgb(229,229,229);\n"
 "}\n"
 "")
-        self.pushButton_23.setText("")
+        self.PlayPushButton.setText("")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap("icons/play.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_23.setIcon(icon1)
-        self.pushButton_23.setObjectName("pushButton_23")
-        self.gridLayout_2.addWidget(self.pushButton_23, 0, 0, 1, 1)
-        self.pushButton_24 = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.pushButton_24.setStyleSheet("QPushButton{\n"
+        self.PlayPushButton.setIcon(icon1)
+        self.PlayPushButton.setObjectName("PlayPushButton")
+        self.PlayPauseVolumeGridLayout.addWidget(self.PlayPushButton, 0, 0, 1, 1)
+        self.PausePushButton = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.PausePushButton.setStyleSheet("QPushButton{\n"
 "border-radius:20px;\n"
 "    \n"
 "}\n"
@@ -130,209 +129,256 @@ class Ui_MainWindow(object):
 " background-color: rgb(229,229,229);\n"
 "}\n"
 "")
-        self.pushButton_24.setText("")
+        self.PausePushButton.setText("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("icons/pause.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_24.setIcon(icon2)
-        self.pushButton_24.setObjectName("pushButton_24")
-        self.gridLayout_2.addWidget(self.pushButton_24, 0, 1, 1, 1)
-        self.horizontalSlider = Slider(self.gridLayoutWidget)
-        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.gridLayout_2.addWidget(self.horizontalSlider, 0, 3, 1, 1)
-        self.gridLayout.addLayout(self.gridLayout_2, 2, 0, 1, 1)
-        self.groupBox = QtWidgets.QGroupBox(self.tab)
-        self.groupBox.setGeometry(QtCore.QRect(20, 420, 1431, 361))
-        self.groupBox.setObjectName("groupBox")
-        self.gridLayoutWidget_3 = QtWidgets.QWidget(self.groupBox)
-        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(0, 20, 1421, 331))
+        self.PausePushButton.setIcon(icon2)
+        self.PausePushButton.setObjectName("PausePushButton")
+        self.PlayPauseVolumeGridLayout.addWidget(self.PausePushButton, 0, 1, 1, 1)
+        self.VolumeUpDownHorizontalSlider = Slider(self.gridLayoutWidget)
+        self.VolumeUpDownHorizontalSlider.setOrientation(QtCore.Qt.Horizontal)
+        self.VolumeUpDownHorizontalSlider.setObjectName("VolumeUpDownHorizontalSlider")
+        self.PlayPauseVolumeGridLayout.addWidget(self.VolumeUpDownHorizontalSlider, 0, 3, 1, 1)
+        self.SongSpectrogramGridLayout.addLayout(self.PlayPauseVolumeGridLayout, 2, 0, 1, 1)
+        self.InstrumentEmphasizerGroupBox = QtWidgets.QGroupBox(self.PlayerAndEmphasizerTab)
+        self.InstrumentEmphasizerGroupBox.setGeometry(QtCore.QRect(20, 420, 1431, 401))
+        font = QtGui.QFont()
+        font.setFamily("Georgia")
+        font.setPointSize(10)
+        self.InstrumentEmphasizerGroupBox.setFont(font)
+        self.InstrumentEmphasizerGroupBox.setObjectName("InstrumentEmphasizerGroupBox")
+        self.gridLayoutWidget_3 = QtWidgets.QWidget(self.InstrumentEmphasizerGroupBox)
+        self.gridLayoutWidget_3.setGeometry(QtCore.QRect(12, 32, 1411, 361))
         self.gridLayoutWidget_3.setObjectName("gridLayoutWidget_3")
-        self.gridLayout_3 = QtWidgets.QGridLayout(self.gridLayoutWidget_3)
-        self.gridLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_3.setObjectName("gridLayout_3")
-        self.label_11 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_11.setObjectName("label_11")
-        self.gridLayout_3.addWidget(self.label_11, 3, 2, 1, 1)
-        self.label_12 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_12.setObjectName("label_12")
-        self.gridLayout_3.addWidget(self.label_12, 3, 3, 1, 1)
-        self.label_13 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_13.setObjectName("label_13")
-        self.gridLayout_3.addWidget(self.label_13, 3, 4, 1, 1)
-        self.label_10 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_10.setObjectName("label_10")
-        self.gridLayout_3.addWidget(self.label_10, 3, 1, 1, 1)
-        self.E_FlatClarinetGainVerticalSlider = Slider(self.gridLayoutWidget_3)
-        self.E_FlatClarinetGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
-        self.E_FlatClarinetGainVerticalSlider.setObjectName("E_FlatClarinetGainVerticalSlider")
-        self.gridLayout_3.addWidget(self.E_FlatClarinetGainVerticalSlider, 1, 2, 1, 1)
-        self.PiccoloGainVerticalSlider = Slider(self.gridLayoutWidget_3)
-        self.PiccoloGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
-        self.PiccoloGainVerticalSlider.setObjectName("PiccoloGainVerticalSlider")
-        self.gridLayout_3.addWidget(self.PiccoloGainVerticalSlider, 1, 3, 1, 1)
+        self.InstrumentEmphasizerGridLayout = QtWidgets.QGridLayout(self.gridLayoutWidget_3)
+        self.InstrumentEmphasizerGridLayout.setContentsMargins(0, 0, 0, 0)
+        self.InstrumentEmphasizerGridLayout.setObjectName("InstrumentEmphasizerGridLayout")
+        self.BassMaximumFrequencyTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.BassMaximumFrequencyTextLabel.setFont(font)
+        self.BassMaximumFrequencyTextLabel.setObjectName("BassMaximumFrequencyTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.BassMaximumFrequencyTextLabel, 0, 0, 1, 1)
+        self.TromboneTitelLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.TromboneTitelLabel.setObjectName("TromboneTitelLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.TromboneTitelLabel, 4, 1, 1, 1)
+        self.E_FlatClarinetMaximumFrequencyTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.E_FlatClarinetMaximumFrequencyTextLabel.setFont(font)
+        self.E_FlatClarinetMaximumFrequencyTextLabel.setObjectName("E_FlatClarinetMaximumFrequencyTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetMaximumFrequencyTextLabel, 0, 2, 1, 1)
+        self.E_FlatClarinetTitelLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.E_FlatClarinetTitelLabel.setObjectName("E_FlatClarinetTitelLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetTitelLabel, 4, 2, 1, 1)
+        self.BassGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.BassGainValueTextLabel.setFont(font)
+        self.BassGainValueTextLabel.setObjectName("BassGainValueTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.BassGainValueTextLabel, 2, 0, 1, 1)
+        self.TromboneGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.TromboneGainValueTextLabel.setFont(font)
+        self.TromboneGainValueTextLabel.setObjectName("TromboneGainValueTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.TromboneGainValueTextLabel, 2, 1, 1, 1)
+        self.TromboneMaximumFrequencyTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.TromboneMaximumFrequencyTextLabel.setFont(font)
+        self.TromboneMaximumFrequencyTextLabel.setObjectName("TromboneMaximumFrequencyTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.TromboneMaximumFrequencyTextLabel, 0, 1, 1, 1)
+        self.E_FlatClarinetGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.E_FlatClarinetGainValueTextLabel.setFont(font)
+        self.E_FlatClarinetGainValueTextLabel.setObjectName("E_FlatClarinetGainValueTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetGainValueTextLabel, 2, 2, 1, 1)
+        self.E_FlatClarinetImageLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.E_FlatClarinetImageLabel.setText("")
+        self.E_FlatClarinetImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\xxss.png"))
+        self.E_FlatClarinetImageLabel.setObjectName("E_FlatClarinetImageLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetImageLabel, 3, 2, 1, 1)
         self.TromboneGainVerticalSlider = Slider(self.gridLayoutWidget_3)
+        self.TromboneGainVerticalSlider.setMaximum(40)
+        self.TromboneGainVerticalSlider.setProperty("value", 4)
+        self.TromboneGainVerticalSlider.setSliderPosition(4)
         self.TromboneGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
+        self.TromboneGainVerticalSlider.setInvertedAppearance(False)
+        self.TromboneGainVerticalSlider.setInvertedControls(False)
         self.TromboneGainVerticalSlider.setObjectName("TromboneGainVerticalSlider")
-        self.gridLayout_3.addWidget(self.TromboneGainVerticalSlider, 1, 1, 1, 1)
-        self.ViolaGainVerticalSlider = Slider(self.gridLayoutWidget_3)
-        self.ViolaGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
-        self.ViolaGainVerticalSlider.setObjectName("ViolaGainVerticalSlider")
-        self.gridLayout_3.addWidget(self.ViolaGainVerticalSlider, 1, 4, 1, 1)
+        self.InstrumentEmphasizerGridLayout.addWidget(self.TromboneGainVerticalSlider, 1, 1, 1, 1)
+        self.TromboneImageLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.TromboneImageLabel.setText("")
+        self.TromboneImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/tromboneResize.png"))
+        self.TromboneImageLabel.setObjectName("TromboneImageLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.TromboneImageLabel, 3, 1, 1, 1)
+        self.BassTitelLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.BassTitelLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.BassTitelLabel.setObjectName("BassTitelLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.BassTitelLabel, 4, 0, 1, 1)
         self.BassGainVerticalSlider = Slider(self.gridLayoutWidget_3)
+        self.BassGainVerticalSlider.setMaximum(40)
+        self.BassGainVerticalSlider.setProperty("value", 4)
         self.BassGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
         self.BassGainVerticalSlider.setObjectName("BassGainVerticalSlider")
-        self.gridLayout_3.addWidget(self.BassGainVerticalSlider, 1, 0, 1, 1)
-        self.label_23 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_23.setObjectName("label_23")
-        self.gridLayout_3.addWidget(self.label_23, 0, 4, 1, 1)
-        self.label_14 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_14.setObjectName("label_14")
-        self.gridLayout_3.addWidget(self.label_14, 4, 0, 1, 1)
-        self.label_18 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_18.setObjectName("label_18")
-        self.gridLayout_3.addWidget(self.label_18, 4, 4, 1, 1)
-        self.label_17 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_17.setObjectName("label_17")
-        self.gridLayout_3.addWidget(self.label_17, 4, 3, 1, 1)
-        self.label_19 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_19.setObjectName("label_19")
-        self.gridLayout_3.addWidget(self.label_19, 0, 0, 1, 1)
-        self.label_15 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout_3.addWidget(self.label_15, 4, 1, 1, 1)
-        self.label_16 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_16.setObjectName("label_16")
-        self.gridLayout_3.addWidget(self.label_16, 4, 2, 1, 1)
-        self.label_22 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_22.setObjectName("label_22")
-        self.gridLayout_3.addWidget(self.label_22, 0, 3, 1, 1)
-        self.label_21 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_21.setObjectName("label_21")
-        self.gridLayout_3.addWidget(self.label_21, 0, 2, 1, 1)
-        self.label_20 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_20.setObjectName("label_20")
-        self.gridLayout_3.addWidget(self.label_20, 0, 1, 1, 1)
-
-        self.BassGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.BassGainValueTextLabel.setObjectName("BassGainValueTextLabel")
-        self.gridLayout_3.addWidget(self.BassGainValueTextLabel, 2, 0, 1, 1)
-
-        self.TromboneGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.TromboneGainValueTextLabel.setObjectName("TromboneGainValueTextLabel")
-        self.gridLayout_3.addWidget(self.TromboneGainValueTextLabel, 2, 1, 1, 1)
-
-        self.E_FlatClarinetGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.E_FlatClarinetGainValueTextLabel.setObjectName("E_FlatClarinetGainValueTextLabel")
-        self.gridLayout_3.addWidget(self.E_FlatClarinetGainValueTextLabel, 2, 2, 1, 1)
-
+        self.InstrumentEmphasizerGridLayout.addWidget(self.BassGainVerticalSlider, 1, 0, 1, 1)
+        self.E_FlatClarinetGainVerticalSlider = Slider(self.gridLayoutWidget_3)
+        self.E_FlatClarinetGainVerticalSlider.setMaximum(40)
+        self.E_FlatClarinetGainVerticalSlider.setProperty("value", 4)
+        self.E_FlatClarinetGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
+        self.E_FlatClarinetGainVerticalSlider.setObjectName("E_FlatClarinetGainVerticalSlider")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetGainVerticalSlider, 1, 2, 1, 1)
+        self.ViolaMaximumFrequencyTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.ViolaMaximumFrequencyTextLabel.setFont(font)
+        self.ViolaMaximumFrequencyTextLabel.setObjectName("ViolaMaximumFrequencyTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.ViolaMaximumFrequencyTextLabel, 0, 4, 1, 1)
+        self.PiccoloMaximumFrequencyTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.PiccoloMaximumFrequencyTextLabel.setFont(font)
+        self.PiccoloMaximumFrequencyTextLabel.setObjectName("PiccoloMaximumFrequencyTextLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloMaximumFrequencyTextLabel, 0, 3, 1, 1)
+        self.BassImageLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.BassImageLabel.setText("")
+        self.BassImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/bass.png"))
+        self.BassImageLabel.setScaledContents(False)
+        self.BassImageLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.BassImageLabel.setObjectName("BassImageLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.BassImageLabel, 3, 0, 1, 1)
+        self.ViolaTitelLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.ViolaTitelLabel.setObjectName("ViolaTitelLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.ViolaTitelLabel, 4, 4, 1, 1)
         self.PiccoloGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.PiccoloGainValueTextLabel.setFont(font)
         self.PiccoloGainValueTextLabel.setObjectName("PiccoloGainValueTextLabel")
-        self.gridLayout_3.addWidget(self.PiccoloGainValueTextLabel, 2, 3, 1, 1)
-
+        self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloGainValueTextLabel, 2, 3, 1, 1)
+        self.PiccoloGainVerticalSlider = Slider(self.gridLayoutWidget_3)
+        self.PiccoloGainVerticalSlider.setMaximum(40)
+        self.PiccoloGainVerticalSlider.setProperty("value", 4)
+        self.PiccoloGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
+        self.PiccoloGainVerticalSlider.setObjectName("PiccoloGainVerticalSlider")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloGainVerticalSlider, 1, 3, 1, 1)
+        self.ViolaGainVerticalSlider = Slider(self.gridLayoutWidget_3)
+        self.ViolaGainVerticalSlider.setMaximum(40)
+        self.ViolaGainVerticalSlider.setProperty("value", 4)
+        self.ViolaGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
+        self.ViolaGainVerticalSlider.setObjectName("ViolaGainVerticalSlider")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.ViolaGainVerticalSlider, 1, 4, 1, 1)
+        self.PiccoloImageLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.PiccoloImageLabel.setText("")
+        self.PiccoloImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/piccoloPNG.png"))
+        self.PiccoloImageLabel.setObjectName("PiccoloImageLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloImageLabel, 3, 3, 1, 1)
         self.ViolaGainValueTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        self.ViolaGainValueTextLabel.setFont(font)
         self.ViolaGainValueTextLabel.setObjectName("ViolaGainValueTextLabel")
-        self.gridLayout_3.addWidget(self.ViolaGainValueTextLabel, 2, 4, 1, 1)
-
-        self.label_9 = QtWidgets.QLabel(self.gridLayoutWidget_3)
-        self.label_9.setText("")
-        self.label_9.setPixmap(QtGui.QPixmap("Bass.png"))
-        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_9.setObjectName("label_9")
-        self.gridLayout_3.addWidget(self.label_9, 3, 0, 1, 1)
-
-        self.tabWidget.addTab(self.tab, "")
-        self.tab_2 = QtWidgets.QWidget()
-        self.tab_2.setObjectName("tab_2")
-        self.line = QtWidgets.QFrame(self.tab_2)
-        self.line.setGeometry(QtCore.QRect(490, 0, 16, 611))
-        self.line.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.line_2 = QtWidgets.QFrame(self.tab_2)
-        self.line_2.setGeometry(QtCore.QRect(1010, 0, 16, 611))
-        self.line_2.setFrameShape(QtWidgets.QFrame.VLine)
-        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line_2.setObjectName("line_2")
-        self.label = QtWidgets.QLabel(self.tab_2)
-        self.label.setGeometry(QtCore.QRect(30, 130, 431, 271))
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("R.jpg"))
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.tab_2)
-        self.label_2.setGeometry(QtCore.QRect(590, 130, 361, 271))
-        self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("PNG.png"))
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.tab_2)
-        self.label_3.setGeometry(QtCore.QRect(1050, 150, 311, 271))
-        self.label_3.setText("")
-        self.label_3.setPixmap(QtGui.QPixmap("bongosPNG.png"))
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.tab_2)
-        self.label_4.setGeometry(QtCore.QRect(170, 40, 121, 51))
+        self.InstrumentEmphasizerGridLayout.addWidget(self.ViolaGainValueTextLabel, 2, 4, 1, 1)
+        self.PiccoloTitelLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.PiccoloTitelLabel.setObjectName("PiccoloTitelLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloTitelLabel, 4, 3, 1, 1)
+        self.ViolaImageLabel = QtWidgets.QLabel(self.gridLayoutWidget_3)
+        self.ViolaImageLabel.setText("")
+        self.ViolaImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/viola.png"))
+        self.ViolaImageLabel.setObjectName("ViolaImageLabel")
+        self.InstrumentEmphasizerGridLayout.addWidget(self.ViolaImageLabel, 3, 4, 1, 1)
+        self.MainTabWidget.addTab(self.PlayerAndEmphasizerTab, "")
+        self.VirtualMusicalInstrumnetsTab = QtWidgets.QWidget()
+        self.VirtualMusicalInstrumnetsTab.setObjectName("VirtualMusicalInstrumnetsTab")
+        self.PianoXylophoneSeparateLine = QtWidgets.QFrame(self.VirtualMusicalInstrumnetsTab)
+        self.PianoXylophoneSeparateLine.setGeometry(QtCore.QRect(490, 90, 20, 751))
+        self.PianoXylophoneSeparateLine.setFrameShape(QtWidgets.QFrame.VLine)
+        self.PianoXylophoneSeparateLine.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.PianoXylophoneSeparateLine.setObjectName("PianoXylophoneSeparateLine")
+        self.XylophoneBongosSeparateLine = QtWidgets.QFrame(self.VirtualMusicalInstrumnetsTab)
+        self.XylophoneBongosSeparateLine.setGeometry(QtCore.QRect(1010, 90, 20, 751))
+        self.XylophoneBongosSeparateLine.setFrameShape(QtWidgets.QFrame.VLine)
+        self.XylophoneBongosSeparateLine.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.XylophoneBongosSeparateLine.setObjectName("XylophoneBongosSeparateLine")
+        self.PianoImageLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.PianoImageLabel.setGeometry(QtCore.QRect(20, 260, 431, 271))
+        self.PianoImageLabel.setText("")
+        self.PianoImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/piano.jpg"))
+        self.PianoImageLabel.setObjectName("PianoImageLabel")
+        self.XylophoneImageLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.XylophoneImageLabel.setGeometry(QtCore.QRect(580, 260, 361, 271))
+        self.XylophoneImageLabel.setText("")
+        self.XylophoneImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/Xylophone.png"))
+        self.XylophoneImageLabel.setObjectName("XylophoneImageLabel")
+        self.BongosImageLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.BongosImageLabel.setGeometry(QtCore.QRect(1040, 280, 311, 271))
+        self.BongosImageLabel.setText("")
+        self.BongosImageLabel.setPixmap(QtGui.QPixmap("D:\\spring22\\SBEN311\\task#3\\Musical-Instruments-Emphasizer/bongosPNG.png"))
+        self.BongosImageLabel.setObjectName("BongosImageLabel")
+        self.PianoTitelTextLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.PianoTitelTextLabel.setGeometry(QtCore.QRect(160, 80, 121, 51))
         font = QtGui.QFont()
         font.setFamily("Georgia")
-        font.setPointSize(20)
+        font.setPointSize(17)
         font.setBold(True)
         font.setWeight(75)
-        self.label_4.setFont(font)
-        self.label_4.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_4.setObjectName("label_4")
-        self.label_5 = QtWidgets.QLabel(self.tab_2)
-        self.label_5.setGeometry(QtCore.QRect(630, 30, 231, 81))
+        self.PianoTitelTextLabel.setFont(font)
+        self.PianoTitelTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.PianoTitelTextLabel.setObjectName("PianoTitelTextLabel")
+        self.XylophoneTitelTextLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.XylophoneTitelTextLabel.setGeometry(QtCore.QRect(630, 60, 231, 81))
         font = QtGui.QFont()
         font.setFamily("Georgia")
-        font.setPointSize(20)
+        font.setPointSize(17)
         font.setBold(True)
         font.setWeight(75)
-        self.label_5.setFont(font)
-        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.label_6 = QtWidgets.QLabel(self.tab_2)
-        self.label_6.setGeometry(QtCore.QRect(1170, 40, 141, 61))
+        self.XylophoneTitelTextLabel.setFont(font)
+        self.XylophoneTitelTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.XylophoneTitelTextLabel.setObjectName("XylophoneTitelTextLabel")
+        self.BongosTitelTextLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.BongosTitelTextLabel.setGeometry(QtCore.QRect(1170, 70, 141, 61))
         font = QtGui.QFont()
         font.setFamily("Georgia")
-        font.setPointSize(20)
+        font.setPointSize(17)
         font.setBold(True)
         font.setWeight(75)
-        self.label_6.setFont(font)
-        self.label_6.setObjectName("label_6")
-        self.pushButton = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton.setGeometry(QtCore.QRect(400, 290, 51, 101))
-        self.pushButton.setStyleSheet("QPushButton{\n"
+        self.BongosTitelTextLabel.setFont(font)
+        self.BongosTitelTextLabel.setObjectName("BongosTitelTextLabel")
+        self.PianoBKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoBKeyPushButton.setGeometry(QtCore.QRect(390, 420, 51, 101))
+        self.PianoBKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton.setText("")
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton_2 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_2.setGeometry(QtCore.QRect(340, 290, 51, 101))
-        self.pushButton_2.setStyleSheet("QPushButton{\n"
+        self.PianoBKeyPushButton.setObjectName("PianoBKeyPushButton")
+        self.PianoAKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoAKeyPushButton.setGeometry(QtCore.QRect(330, 420, 51, 101))
+        self.PianoAKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_2.setText("")
-        self.pushButton_2.setObjectName("pushButton_2")
-        self.pushButton_3 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_3.setGeometry(QtCore.QRect(280, 290, 51, 101))
-        self.pushButton_3.setStyleSheet("QPushButton{\n"
+        self.PianoAKeyPushButton.setObjectName("PianoAKeyPushButton")
+        self.PianoGKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoGKeyPushButton.setGeometry(QtCore.QRect(270, 420, 51, 101))
+        self.PianoGKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_3.setText("")
-        self.pushButton_3.setObjectName("pushButton_3")
-        self.pushButton_4 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_4.setGeometry(QtCore.QRect(220, 290, 51, 101))
-        self.pushButton_4.setStyleSheet("QPushButton{\n"
+        self.PianoGKeyPushButton.setObjectName("PianoGKeyPushButton")
+        self.PianoFKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoFKeyPushButton.setGeometry(QtCore.QRect(210, 420, 51, 101))
+        self.PianoFKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
@@ -340,11 +386,10 @@ class Ui_MainWindow(object):
 " background-color: rgb(229,229,229);\n"
 "}\n"
 "")
-        self.pushButton_4.setText("")
-        self.pushButton_4.setObjectName("pushButton_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_5.setGeometry(QtCore.QRect(160, 290, 51, 101))
-        self.pushButton_5.setStyleSheet("QPushButton{\n"
+        self.PianoFKeyPushButton.setObjectName("PianoFKeyPushButton")
+        self.PianoEKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoEKeyPushButton.setGeometry(QtCore.QRect(150, 420, 51, 101))
+        self.PianoEKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
@@ -352,99 +397,95 @@ class Ui_MainWindow(object):
 " background-color: rgb(229,229,229);\n"
 "}\n"
 "")
-        self.pushButton_5.setText("")
-        self.pushButton_5.setObjectName("pushButton_5")
-        self.pushButton_6 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_6.setGeometry(QtCore.QRect(100, 290, 51, 101))
-        self.pushButton_6.setStyleSheet("QPushButton{\n"
+        self.PianoEKeyPushButton.setObjectName("PianoEKeyPushButton")
+        self.PianoDKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoDKeyPushButton.setGeometry(QtCore.QRect(90, 420, 51, 101))
+        self.PianoDKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_6.setText("")
-        self.pushButton_6.setObjectName("pushButton_6")
-        self.pushButton_7 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_7.setGeometry(QtCore.QRect(30, 290, 51, 101))
-        self.pushButton_7.setStyleSheet("QPushButton{\n"
+        self.PianoDKeyPushButton.setObjectName("PianoDKeyPushButton")
+        self.PianoCKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoCKeyPushButton.setGeometry(QtCore.QRect(20, 420, 51, 101))
+        self.PianoCKeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_7.setText("")
-        self.pushButton_7.setObjectName("pushButton_7")
-        self.pushButton_8 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_8.setGeometry(QtCore.QRect(380, 130, 30, 151))
-        self.pushButton_8.setStyleSheet("QPushButton{\n"
+        self.PianoCKeyPushButton.setObjectName("PianoCKeyPushButton")
+        self.PianoZKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoZKeyPushButton.setGeometry(QtCore.QRect(370, 260, 30, 151))
+        self.PianoZKeyPushButton.setStyleSheet("QPushButton{\n"
+"border-radius:0px;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}")
+        self.PianoZKeyPushButton.setObjectName("PianoZKeyPushButton")
+        self.PianoTKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoTKeyPushButton.setGeometry(QtCore.QRect(310, 260, 28, 151))
+        self.PianoTKeyPushButton.setStyleSheet("QPushButton{\n"
+"border-radius:0px;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}")
+        self.PianoTKeyPushButton.setObjectName("PianoTKeyPushButton")
+        self.PianoRKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoRKeyPushButton.setGeometry(QtCore.QRect(250, 260, 28, 151))
+        self.PianoRKeyPushButton.setStyleSheet("QPushButton{\n"
+"border-radius:0px;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}")
+        self.PianoRKeyPushButton.setObjectName("PianoRKeyPushButton")
+        self.PianoWKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoWKeyPushButton.setGeometry(QtCore.QRect(130, 260, 27, 151))
+        self.PianoWKeyPushButton.setStyleSheet("QPushButton{\n"
+"border-radius:0px;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}")
+        self.PianoWKeyPushButton.setObjectName("PianoWKeyPushButton")
+        self.PianoQKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.PianoQKeyPushButton.setGeometry(QtCore.QRect(70, 260, 27, 151))
+        self.PianoQKeyPushButton.setStyleSheet("QPushButton{\n"
+"border-radius:0px;\n"
+"color:white;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+" background-color: rgb(229,229,229);\n"
+"}")
+        self.PianoQKeyPushButton.setObjectName("PianoQKeyPushButton")
+        self.Xylophone8KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone8KeyPushButton.setGeometry(QtCore.QRect(880, 360, 22, 70))
+        self.Xylophone8KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_8.setText("")
-        self.pushButton_8.setObjectName("pushButton_8")
-        self.pushButton_9 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_9.setGeometry(QtCore.QRect(320, 130, 28, 151))
-        self.pushButton_9.setStyleSheet("QPushButton{\n"
-"border-radius:0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-" background-color: rgb(229,229,229);\n"
-"}")
-        self.pushButton_9.setText("")
-        self.pushButton_9.setObjectName("pushButton_9")
-        self.pushButton_10 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_10.setGeometry(QtCore.QRect(260, 130, 28, 151))
-        self.pushButton_10.setStyleSheet("QPushButton{\n"
-"border-radius:0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-" background-color: rgb(229,229,229);\n"
-"}")
-        self.pushButton_10.setText("")
-        self.pushButton_10.setObjectName("pushButton_10")
-        self.pushButton_11 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_11.setGeometry(QtCore.QRect(140, 130, 27, 151))
-        self.pushButton_11.setStyleSheet("QPushButton{\n"
-"border-radius:0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-" background-color: rgb(229,229,229);\n"
-"}")
-        self.pushButton_11.setText("")
-        self.pushButton_11.setObjectName("pushButton_11")
-        self.pushButton_12 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_12.setGeometry(QtCore.QRect(80, 130, 27, 151))
-        self.pushButton_12.setStyleSheet("QPushButton{\n"
-"border-radius:0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-" background-color: rgb(229,229,229);\n"
-"}")
-        self.pushButton_12.setText("")
-        self.pushButton_12.setObjectName("pushButton_12")
-        self.pushButton_13 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_13.setGeometry(QtCore.QRect(890, 230, 22, 70))
-        self.pushButton_13.setStyleSheet("QPushButton{\n"
-"border-radius:0px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-" background-color: rgb(229,229,229);\n"
-"}")
-        self.pushButton_13.setText("")
-        self.pushButton_13.setObjectName("pushButton_13")
-        self.pushButton_21 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_21.setGeometry(QtCore.QRect(1180, 200, 51, 60))
-        self.pushButton_21.setStyleSheet("QPushButton {\n"
+        self.Xylophone8KeyPushButton.setObjectName("Xylophone8KeyPushButton")
+        self.BongosNKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.BongosNKeyPushButton.setGeometry(QtCore.QRect(1170, 330, 51, 60))
+        self.BongosNKeyPushButton.setStyleSheet("QPushButton {\n"
 "    color: #333;\n"
 "    border-radius: 20px;\n"
 "    border-style: outset;\n"
@@ -458,11 +499,10 @@ class Ui_MainWindow(object):
 "        );\n"
 "    }\n"
 "")
-        self.pushButton_21.setText("")
-        self.pushButton_21.setObjectName("pushButton_21")
-        self.pushButton_22 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_22.setGeometry(QtCore.QRect(1230, 190, 51, 60))
-        self.pushButton_22.setStyleSheet("QPushButton {\n"
+        self.BongosNKeyPushButton.setObjectName("BongosNKeyPushButton")
+        self.BongosMKeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.BongosMKeyPushButton.setGeometry(QtCore.QRect(1220, 320, 51, 60))
+        self.BongosMKeyPushButton.setStyleSheet("QPushButton {\n"
 "    color: #333;\n"
 "    border-radius: 20px;\n"
 "    border-style: outset;\n"
@@ -476,89 +516,92 @@ class Ui_MainWindow(object):
 "        );\n"
 "    }\n"
 "")
-        self.pushButton_22.setText("")
-        self.pushButton_22.setObjectName("pushButton_22")
-        self.pushButton_14 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_14.setGeometry(QtCore.QRect(850, 220, 25, 90))
-        self.pushButton_14.setStyleSheet("QPushButton{\n"
+        self.BongosMKeyPushButton.setObjectName("BongosMKeyPushButton")
+        self.Xylophone7KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone7KeyPushButton.setGeometry(QtCore.QRect(840, 350, 25, 90))
+        self.Xylophone7KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_14.setText("")
-        self.pushButton_14.setObjectName("pushButton_14")
-        self.pushButton_15 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_15.setGeometry(QtCore.QRect(800, 220, 30, 95))
-        self.pushButton_15.setStyleSheet("QPushButton{\n"
+        self.Xylophone7KeyPushButton.setObjectName("Xylophone7KeyPushButton")
+        self.Xylophone6KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone6KeyPushButton.setGeometry(QtCore.QRect(790, 350, 30, 95))
+        self.Xylophone6KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_15.setText("")
-        self.pushButton_15.setObjectName("pushButton_15")
-        self.pushButton_16 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_16.setGeometry(QtCore.QRect(760, 220, 26, 99))
-        self.pushButton_16.setStyleSheet("QPushButton{\n"
+        self.Xylophone6KeyPushButton.setObjectName("Xylophone6KeyPushButton")
+        self.Xylophone5KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone5KeyPushButton.setGeometry(QtCore.QRect(750, 350, 26, 99))
+        self.Xylophone5KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_16.setText("")
-        self.pushButton_16.setObjectName("pushButton_16")
-        self.pushButton_17 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_17.setGeometry(QtCore.QRect(720, 220, 23, 100))
-        self.pushButton_17.setStyleSheet("QPushButton{\n"
+        self.Xylophone5KeyPushButton.setObjectName("Xylophone5KeyPushButton")
+        self.Xylophone4KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone4KeyPushButton.setGeometry(QtCore.QRect(710, 350, 23, 100))
+        self.Xylophone4KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_17.setText("")
-        self.pushButton_17.setObjectName("pushButton_17")
-        self.pushButton_18 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_18.setGeometry(QtCore.QRect(680, 220, 23, 100))
-        self.pushButton_18.setStyleSheet("QPushButton{\n"
+        self.Xylophone4KeyPushButton.setObjectName("Xylophone4KeyPushButton")
+        self.Xylophone3KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone3KeyPushButton.setGeometry(QtCore.QRect(670, 350, 23, 100))
+        self.Xylophone3KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_18.setText("")
-        self.pushButton_18.setObjectName("pushButton_18")
-        self.pushButton_19 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_19.setGeometry(QtCore.QRect(630, 210, 26, 114))
-        self.pushButton_19.setStyleSheet("QPushButton{\n"
+        self.Xylophone3KeyPushButton.setObjectName("Xylophone3KeyPushButton")
+        self.Xylophone2KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone2KeyPushButton.setGeometry(QtCore.QRect(620, 340, 26, 114))
+        self.Xylophone2KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_19.setText("")
-        self.pushButton_19.setObjectName("pushButton_19")
-        self.pushButton_20 = QtWidgets.QPushButton(self.tab_2)
-        self.pushButton_20.setGeometry(QtCore.QRect(600, 210, 16, 119))
-        self.pushButton_20.setStyleSheet("QPushButton{\n"
+        self.Xylophone2KeyPushButton.setObjectName("Xylophone2KeyPushButton")
+        self.Xylophone1KeyPushButton = QtWidgets.QPushButton(self.VirtualMusicalInstrumnetsTab)
+        self.Xylophone1KeyPushButton.setGeometry(QtCore.QRect(590, 340, 16, 119))
+        self.Xylophone1KeyPushButton.setStyleSheet("QPushButton{\n"
 "border-radius:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
 " background-color: rgb(229,229,229);\n"
 "}")
-        self.pushButton_20.setText("")
-        self.pushButton_20.setObjectName("pushButton_20")
-        self.tabWidget.addTab(self.tab_2, "")
+        self.Xylophone1KeyPushButton.setObjectName("Xylophone1KeyPushButton")
+        self.MainTitelTextLabel = QtWidgets.QLabel(self.VirtualMusicalInstrumnetsTab)
+        self.MainTitelTextLabel.setGeometry(QtCore.QRect(410, 20, 701, 51))
+        font = QtGui.QFont()
+        font.setFamily("Georgia")
+        font.setPointSize(25)
+        font.setBold(True)
+        font.setItalic(True)
+        font.setWeight(75)
+        self.MainTitelTextLabel.setFont(font)
+        self.MainTitelTextLabel.setAlignment(QtCore.Qt.AlignCenter)
+        self.MainTitelTextLabel.setObjectName("MainTitelTextLabel")
+        self.MainTabWidget.addTab(self.VirtualMusicalInstrumnetsTab, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1492, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1497, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -567,44 +610,66 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionOpen = QtWidgets.QAction(MainWindow)
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("icons/open.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionOpen.setIcon(icon3)
         self.actionOpen.setObjectName("actionOpen")
         self.menuFile.addAction(self.actionOpen)
         self.menubar.addAction(self.menuFile.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.MainTabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_7.setText(_translate("MainWindow", "Song Graph"))
-        self.label_8.setText(_translate("MainWindow", "Spectrogram"))
-        self.groupBox.setTitle(_translate("MainWindow", "Instrument Emphasizer"))
-        self.label_11.setText(_translate("MainWindow", "TextLabel"))
-        self.label_12.setText(_translate("MainWindow", "TextLabel"))
-        self.label_13.setText(_translate("MainWindow", "TextLabel"))
-        self.label_10.setText(_translate("MainWindow", "TextLabel"))
-        self.label_23.setText(_translate("MainWindow", "20,000 Hz"))
-        self.label_14.setText(_translate("MainWindow", "Bass"))
-        self.label_18.setText(_translate("MainWindow", "Viola"))
-        self.label_17.setText(_translate("MainWindow", "Piccolo"))
-        self.label_19.setText(_translate("MainWindow", "128 Hz"))
-        self.label_15.setText(_translate("MainWindow", "Trombone"))
-        self.label_16.setText(_translate("MainWindow", "E-Flat Clarinet"))
-        self.label_22.setText(_translate("MainWindow", "2000 Hz"))
-        self.label_21.setText(_translate("MainWindow", "1000 Hz"))
-        self.label_20.setText(_translate("MainWindow", "550 Hz"))
+        self.SongGraphTextLabel.setText(_translate("MainWindow", "Song Graph"))
+        self.SpectrogramGraphTextLabel.setText(_translate("MainWindow", "Spectrogram"))
+        self.InstrumentEmphasizerGroupBox.setTitle(_translate("MainWindow", "Instrument Emphasizer"))
+        self.BassMaximumFrequencyTextLabel.setText(_translate("MainWindow", "128 Hz"))
+        self.TromboneTitelLabel.setText(_translate("MainWindow", "Trombone"))
+        self.E_FlatClarinetMaximumFrequencyTextLabel.setText(_translate("MainWindow", "1000 Hz"))
+        self.E_FlatClarinetTitelLabel.setText(_translate("MainWindow", "E-Flat Clarinet"))
         self.BassGainValueTextLabel.setText(_translate("MainWindow", "1x"))
         self.TromboneGainValueTextLabel.setText(_translate("MainWindow", "1x"))
+        self.TromboneMaximumFrequencyTextLabel.setText(_translate("MainWindow", "550 Hz"))
         self.E_FlatClarinetGainValueTextLabel.setText(_translate("MainWindow", "1x"))
+        self.BassTitelLabel.setText(_translate("MainWindow", "Bass"))
+        self.ViolaMaximumFrequencyTextLabel.setText(_translate("MainWindow", "20,000 Hz"))
+        self.PiccoloMaximumFrequencyTextLabel.setText(_translate("MainWindow", "2000 Hz"))
+        self.ViolaTitelLabel.setText(_translate("MainWindow", "Viola"))
         self.PiccoloGainValueTextLabel.setText(_translate("MainWindow", "1x"))
         self.ViolaGainValueTextLabel.setText(_translate("MainWindow", "1x"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
-        self.label_4.setText(_translate("MainWindow", "Piano"))
-        self.label_5.setText(_translate("MainWindow", "Xylophone"))
-        self.label_6.setText(_translate("MainWindow", "Bongos"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
+        self.PiccoloTitelLabel.setText(_translate("MainWindow", "Piccolo"))
+        self.MainTabWidget.setTabText(self.MainTabWidget.indexOf(self.PlayerAndEmphasizerTab), _translate("MainWindow", "Player & Emphasizer"))
+        self.PianoTitelTextLabel.setText(_translate("MainWindow", "Piano"))
+        self.XylophoneTitelTextLabel.setText(_translate("MainWindow", "Xylophone"))
+        self.BongosTitelTextLabel.setText(_translate("MainWindow", "Bongos"))
+        self.PianoBKeyPushButton.setText(_translate("MainWindow", "B"))
+        self.PianoAKeyPushButton.setText(_translate("MainWindow", "A"))
+        self.PianoGKeyPushButton.setText(_translate("MainWindow", "G"))
+        self.PianoFKeyPushButton.setText(_translate("MainWindow", "F"))
+        self.PianoEKeyPushButton.setText(_translate("MainWindow", "E"))
+        self.PianoDKeyPushButton.setText(_translate("MainWindow", "D"))
+        self.PianoCKeyPushButton.setText(_translate("MainWindow", "C"))
+        self.PianoZKeyPushButton.setText(_translate("MainWindow", "Z"))
+        self.PianoTKeyPushButton.setText(_translate("MainWindow", "T"))
+        self.PianoRKeyPushButton.setText(_translate("MainWindow", "R"))
+        self.PianoWKeyPushButton.setText(_translate("MainWindow", "W"))
+        self.PianoQKeyPushButton.setText(_translate("MainWindow", "Q"))
+        self.Xylophone8KeyPushButton.setText(_translate("MainWindow", "8"))
+        self.BongosNKeyPushButton.setText(_translate("MainWindow", "N"))
+        self.BongosMKeyPushButton.setText(_translate("MainWindow", "M"))
+        self.Xylophone7KeyPushButton.setText(_translate("MainWindow", "7"))
+        self.Xylophone6KeyPushButton.setText(_translate("MainWindow", "6"))
+        self.Xylophone5KeyPushButton.setText(_translate("MainWindow", "5"))
+        self.Xylophone4KeyPushButton.setText(_translate("MainWindow", "4"))
+        self.Xylophone3KeyPushButton.setText(_translate("MainWindow", "3"))
+        self.Xylophone2KeyPushButton.setText(_translate("MainWindow", "2"))
+        self.Xylophone1KeyPushButton.setText(_translate("MainWindow", "1"))
+        self.MainTitelTextLabel.setText(_translate("MainWindow", "Virtual Musical Instrumnets"))
+        self.MainTabWidget.setTabText(self.MainTabWidget.indexOf(self.VirtualMusicalInstrumnetsTab), _translate("MainWindow", " Musical Instrumnets "))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
 from pyqtgraph import PlotWidget

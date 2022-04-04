@@ -26,11 +26,11 @@ class MainWindow(QMainWindow):
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
         self.instrumentsUIElementsList = [ { "Instrument": "Bass", "Slider": self.ui.BassGainVerticalSlider, "Gain Value Label": self.ui.BassGainValueTextLabel }, { "Instrument": "Trombone", "Slider": self.ui.TromboneGainVerticalSlider, "Gain Value Label": self.ui.TromboneGainValueTextLabel }, { "Instrument": "E-Flat Clarinet", "Slider": self.ui.E_FlatClarinetGainVerticalSlider, "Gain Value Label": self.ui.E_FlatClarinetGainValueTextLabel }, { "Instrument": "Piccolo", "Slider": self.ui.PiccoloGainVerticalSlider, "Gain Value Label": self.ui.PiccoloGainValueTextLabel }, { "Instrument": "Viola", "Slider": self.ui.ViolaGainVerticalSlider, "Gain Value Label": self.ui.ViolaGainValueTextLabel } ]
 
-        for instrumentDictionary in self.instrumentsUIElementsList:
-            instrumentDictionary["Slider"].setMinimum(0)
-            instrumentDictionary["Slider"].setMaximum(40)
-            instrumentDictionary["Slider"].setValue(4)
-            instrumentDictionary["Gain Value Label"].setText("1x")
+        # for instrumentDictionary in self.instrumentsUIElementsList:
+        #     instrumentDictionary["Slider"].setMinimum(0)
+        #     instrumentDictionary["Slider"].setMaximum(40)
+        #     instrumentDictionary["Slider"].setValue(4)
+        #     instrumentDictionary["Gain Value Label"].setText("1x")
 
         # Links of GUI Elements to Methods:
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())

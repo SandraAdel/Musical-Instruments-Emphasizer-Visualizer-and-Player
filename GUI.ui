@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1492</width>
-    <height>873</height>
+    <width>1497</width>
+    <height>922</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="MainTabWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>0</y>
       <width>1471</width>
-      <height>821</height>
+      <height>871</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -29,9 +29,9 @@
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="PlayerAndEmphasizerTab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Player &amp; Emphasizer</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
@@ -42,9 +42,9 @@
         <height>401</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout">
+      <layout class="QGridLayout" name="SongSpectrogramGridLayout">
        <item row="1" column="0">
-        <widget class="PlotWidget" name="graphicsView">
+        <widget class="PlotWidget" name="SongGraphGraphicsView">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -57,7 +57,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label_7">
+        <widget class="QLabel" name="SongGraphTextLabel">
          <property name="font">
           <font>
            <family>Georgia</family>
@@ -75,7 +75,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="PlotWidget" name="graphicsView_2">
+        <widget class="PlotWidget" name="SpectrogramGraphGraphicsView">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -88,7 +88,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="SpectrogramGraphTextLabel">
          <property name="font">
           <font>
            <family>Georgia</family>
@@ -106,9 +106,9 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <layout class="QGridLayout" name="gridLayout_2">
+        <layout class="QGridLayout" name="PlayPauseVolumeGridLayout">
          <item row="0" column="2">
-          <widget class="QPushButton" name="pushButton_25">
+          <widget class="QPushButton" name="VolumeIconPushButton">
            <property name="styleSheet">
             <string notr="true">QPushButton{
 border-radius:20px;
@@ -125,7 +125,7 @@ border-radius:20px;
           </widget>
          </item>
          <item row="0" column="0">
-          <widget class="QPushButton" name="pushButton_23">
+          <widget class="QPushButton" name="PlayPushButton">
            <property name="styleSheet">
             <string notr="true">QPushButton{
 border-radius:20px;
@@ -146,7 +146,7 @@ QPushButton:hover{
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QPushButton" name="pushButton_24">
+          <widget class="QPushButton" name="PausePushButton">
            <property name="styleSheet">
             <string notr="true">QPushButton{
 border-radius:20px;
@@ -167,7 +167,7 @@ QPushButton:hover{
           </widget>
          </item>
          <item row="0" column="3">
-          <widget class="QSlider" name="horizontalSlider">
+          <widget class="QSlider" name="VolumeUpDownHorizontalSlider">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>
@@ -177,14 +177,20 @@ QPushButton:hover{
        </item>
       </layout>
      </widget>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="InstrumentEmphasizerGroupBox">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>420</y>
         <width>1431</width>
-        <height>361</height>
+        <height>401</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="title">
        <string>Instrument Emphasizer</string>
@@ -192,191 +198,298 @@ QPushButton:hover{
       <widget class="QWidget" name="gridLayoutWidget_3">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>20</y>
-         <width>1421</width>
-         <height>331</height>
+         <x>12</x>
+         <y>32</y>
+         <width>1411</width>
+         <height>361</height>
         </rect>
        </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="3" column="2">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="3">
-         <widget class="QLabel" name="label_12">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="4">
-         <widget class="QLabel" name="label_13">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="2">
-         <widget class="QSlider" name="verticalSlider_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="3">
-         <widget class="QSlider" name="verticalSlider">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QSlider" name="verticalSlider_4">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="4">
-         <widget class="QSlider" name="verticalSlider_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QSlider" name="verticalSlider_2">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="4">
-         <widget class="QLabel" name="label_23">
-          <property name="text">
-           <string>20,000 Hz</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Bass</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="4">
-         <widget class="QLabel" name="label_18">
-          <property name="text">
-           <string>Viola</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="3">
-         <widget class="QLabel" name="label_17">
-          <property name="text">
-           <string>Piccolo</string>
-          </property>
-         </widget>
-        </item>
+       <layout class="QGridLayout" name="InstrumentEmphasizerGridLayout">
         <item row="0" column="0">
-         <widget class="QLabel" name="label_19">
+         <widget class="QLabel" name="BassMaximumFrequencyTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
           <property name="text">
            <string>128 Hz</string>
           </property>
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QLabel" name="label_15">
+         <widget class="QLabel" name="TromboneTitelLabel">
           <property name="text">
            <string>Trombone</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
-         <widget class="QLabel" name="label_16">
-          <property name="text">
-           <string>E-Flat Clarinet</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="3">
-         <widget class="QLabel" name="label_22">
-          <property name="text">
-           <string>2000 Hz</string>
-          </property>
-         </widget>
-        </item>
         <item row="0" column="2">
-         <widget class="QLabel" name="label_21">
+         <widget class="QLabel" name="E_FlatClarinetMaximumFrequencyTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
           <property name="text">
            <string>1000 Hz</string>
           </property>
          </widget>
         </item>
+        <item row="4" column="2">
+         <widget class="QLabel" name="E_FlatClarinetTitelLabel">
+          <property name="text">
+           <string>E-Flat Clarinet</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="BassGainValueTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>1x</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="TromboneGainValueTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>1x</string>
+          </property>
+         </widget>
+        </item>
         <item row="0" column="1">
-         <widget class="QLabel" name="label_20">
+         <widget class="QLabel" name="TromboneMaximumFrequencyTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
           <property name="text">
            <string>550 Hz</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_24">
-          <property name="text">
-           <string>Gain: </string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLabel" name="label_25">
-          <property name="text">
-           <string>Gain:</string>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="2">
-         <widget class="QLabel" name="label_26">
+         <widget class="QLabel" name="E_FlatClarinetGainValueTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
           <property name="text">
-           <string>Gain:</string>
+           <string>1x</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="3">
-         <widget class="QLabel" name="label_27">
-          <property name="text">
-           <string>Gain:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_9">
+        <item row="3" column="2">
+         <widget class="QLabel" name="E_FlatClarinetImageLabel">
           <property name="text">
            <string/>
           </property>
           <property name="pixmap">
-           <pixmap>Bass.png</pixmap>
+           <pixmap>xxss.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QSlider" name="TromboneGainVerticalSlider">
+          <property name="maximum">
+           <number>40</number>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+          <property name="sliderPosition">
+           <number>4</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="invertedAppearance">
+           <bool>false</bool>
+          </property>
+          <property name="invertedControls">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="TromboneImageLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>Musical-Instruments-Emphasizer/tromboneResize.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="BassTitelLabel">
+          <property name="text">
+           <string>Bass</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
-        <item row="2" column="4">
-         <widget class="QLabel" name="label_28">
+        <item row="1" column="0">
+         <widget class="QSlider" name="BassGainVerticalSlider">
+          <property name="maximum">
+           <number>40</number>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QSlider" name="E_FlatClarinetGainVerticalSlider">
+          <property name="maximum">
+           <number>40</number>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="4">
+         <widget class="QLabel" name="ViolaMaximumFrequencyTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
           <property name="text">
-           <string>Gain:</string>
+           <string>20,000 Hz</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="3">
+         <widget class="QLabel" name="PiccoloMaximumFrequencyTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>2000 Hz</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="BassImageLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>Musical-Instruments-Emphasizer/bass.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="4">
+         <widget class="QLabel" name="ViolaTitelLabel">
+          <property name="text">
+           <string>Viola</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="3">
+         <widget class="QLabel" name="PiccoloGainValueTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>1x</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QSlider" name="PiccoloGainVerticalSlider">
+          <property name="maximum">
+           <number>40</number>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QSlider" name="ViolaGainVerticalSlider">
+          <property name="maximum">
+           <number>40</number>
+          </property>
+          <property name="value">
+           <number>4</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="3">
+         <widget class="QLabel" name="PiccoloImageLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>Musical-Instruments-Emphasizer/piccoloPNG.png</pixmap>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="4">
+         <widget class="QLabel" name="ViolaGainValueTextLabel">
+          <property name="font">
+           <font>
+            <family>Times New Roman</family>
+           </font>
+          </property>
+          <property name="text">
+           <string>1x</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="3">
+         <widget class="QLabel" name="PiccoloTitelLabel">
+          <property name="text">
+           <string>Piccolo</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="4">
+         <widget class="QLabel" name="ViolaImageLabel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>Musical-Instruments-Emphasizer/viola.png</pixmap>
           </property>
          </widget>
         </item>
@@ -384,41 +497,41 @@ QPushButton:hover{
       </widget>
      </widget>
     </widget>
-    <widget class="QWidget" name="tab_2">
+    <widget class="QWidget" name="VirtualMusicalInstrumnetsTab">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string> Musical Instrumnets </string>
      </attribute>
-     <widget class="Line" name="line">
+     <widget class="Line" name="PianoXylophoneSeparateLine">
       <property name="geometry">
        <rect>
         <x>490</x>
-        <y>0</y>
-        <width>16</width>
-        <height>611</height>
+        <y>90</y>
+        <width>20</width>
+        <height>751</height>
        </rect>
       </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
      </widget>
-     <widget class="Line" name="line_2">
+     <widget class="Line" name="XylophoneBongosSeparateLine">
       <property name="geometry">
        <rect>
         <x>1010</x>
-        <y>0</y>
-        <width>16</width>
-        <height>611</height>
+        <y>90</y>
+        <width>20</width>
+        <height>751</height>
        </rect>
       </property>
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="PianoImageLabel">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>130</y>
+        <x>20</x>
+        <y>260</y>
         <width>431</width>
         <height>271</height>
        </rect>
@@ -427,14 +540,14 @@ QPushButton:hover{
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>R.jpg</pixmap>
+       <pixmap>Musical-Instruments-Emphasizer/piano.jpg</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="XylophoneImageLabel">
       <property name="geometry">
        <rect>
-        <x>590</x>
-        <y>130</y>
+        <x>580</x>
+        <y>260</y>
         <width>361</width>
         <height>271</height>
        </rect>
@@ -443,14 +556,14 @@ QPushButton:hover{
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>PNG.png</pixmap>
+       <pixmap>Musical-Instruments-Emphasizer/Xylophone.png</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="BongosImageLabel">
       <property name="geometry">
        <rect>
-        <x>1050</x>
-        <y>150</y>
+        <x>1040</x>
+        <y>280</y>
         <width>311</width>
         <height>271</height>
        </rect>
@@ -459,14 +572,14 @@ QPushButton:hover{
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>bongosPNG.png</pixmap>
+       <pixmap>Musical-Instruments-Emphasizer/bongosPNG.png</pixmap>
       </property>
      </widget>
-     <widget class="QLabel" name="label_4">
+     <widget class="QLabel" name="PianoTitelTextLabel">
       <property name="geometry">
        <rect>
-        <x>170</x>
-        <y>40</y>
+        <x>160</x>
+        <y>80</y>
         <width>121</width>
         <height>51</height>
        </rect>
@@ -474,7 +587,7 @@ QPushButton:hover{
       <property name="font">
        <font>
         <family>Georgia</family>
-        <pointsize>20</pointsize>
+        <pointsize>17</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -486,11 +599,11 @@ QPushButton:hover{
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_5">
+     <widget class="QLabel" name="XylophoneTitelTextLabel">
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>30</y>
+        <y>60</y>
         <width>231</width>
         <height>81</height>
        </rect>
@@ -498,7 +611,7 @@ QPushButton:hover{
       <property name="font">
        <font>
         <family>Georgia</family>
-        <pointsize>20</pointsize>
+        <pointsize>17</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -510,11 +623,11 @@ QPushButton:hover{
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLabel" name="label_6">
+     <widget class="QLabel" name="BongosTitelTextLabel">
       <property name="geometry">
        <rect>
         <x>1170</x>
-        <y>40</y>
+        <y>70</y>
         <width>141</width>
         <height>61</height>
        </rect>
@@ -522,7 +635,7 @@ QPushButton:hover{
       <property name="font">
        <font>
         <family>Georgia</family>
-        <pointsize>20</pointsize>
+        <pointsize>17</pointsize>
         <weight>75</weight>
         <bold>true</bold>
        </font>
@@ -531,11 +644,11 @@ QPushButton:hover{
        <string>Bongos</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="PianoBKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>400</x>
-        <y>290</y>
+        <x>390</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -550,14 +663,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>B</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="PianoAKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>340</x>
-        <y>290</y>
+        <x>330</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -572,14 +685,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>A</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="PianoGKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>280</x>
-        <y>290</y>
+        <x>270</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -594,14 +707,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>G</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="PianoFKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>290</y>
+        <x>210</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -617,14 +730,14 @@ QPushButton:hover{
 </string>
       </property>
       <property name="text">
-       <string/>
+       <string>F</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="PianoEKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>290</y>
+        <x>150</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -640,14 +753,14 @@ QPushButton:hover{
 </string>
       </property>
       <property name="text">
-       <string/>
+       <string>E</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="PianoDKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>100</x>
-        <y>290</y>
+        <x>90</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -662,14 +775,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>D</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_7">
+     <widget class="QPushButton" name="PianoCKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>290</y>
+        <x>20</x>
+        <y>420</y>
         <width>51</width>
         <height>101</height>
        </rect>
@@ -684,14 +797,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>C</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_8">
+     <widget class="QPushButton" name="PianoZKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>130</y>
+        <x>370</x>
+        <y>260</y>
         <width>30</width>
         <height>151</height>
        </rect>
@@ -699,6 +812,7 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 border-radius:0px;
+color:white;
 }
 
 QPushButton:hover{
@@ -706,14 +820,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Z</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_9">
+     <widget class="QPushButton" name="PianoTKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>130</y>
+        <x>310</x>
+        <y>260</y>
         <width>28</width>
         <height>151</height>
        </rect>
@@ -721,6 +835,7 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 border-radius:0px;
+color:white;
 }
 
 QPushButton:hover{
@@ -728,14 +843,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>T</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_10">
+     <widget class="QPushButton" name="PianoRKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>260</x>
-        <y>130</y>
+        <x>250</x>
+        <y>260</y>
         <width>28</width>
         <height>151</height>
        </rect>
@@ -743,6 +858,7 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 border-radius:0px;
+color:white;
 }
 
 QPushButton:hover{
@@ -750,14 +866,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>R</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_11">
+     <widget class="QPushButton" name="PianoWKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>140</x>
-        <y>130</y>
+        <x>130</x>
+        <y>260</y>
         <width>27</width>
         <height>151</height>
        </rect>
@@ -765,6 +881,7 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 border-radius:0px;
+color:white;
 }
 
 QPushButton:hover{
@@ -772,14 +889,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>W</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_12">
+     <widget class="QPushButton" name="PianoQKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>80</x>
-        <y>130</y>
+        <x>70</x>
+        <y>260</y>
         <width>27</width>
         <height>151</height>
        </rect>
@@ -787,6 +904,7 @@ QPushButton:hover{
       <property name="styleSheet">
        <string notr="true">QPushButton{
 border-radius:0px;
+color:white;
 }
 
 QPushButton:hover{
@@ -794,14 +912,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Q</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_13">
+     <widget class="QPushButton" name="Xylophone8KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>890</x>
-        <y>230</y>
+        <x>880</x>
+        <y>360</y>
         <width>22</width>
         <height>70</height>
        </rect>
@@ -816,14 +934,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>8</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_21">
+     <widget class="QPushButton" name="BongosNKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>1180</x>
-        <y>200</y>
+        <x>1170</x>
+        <y>330</y>
         <width>51</width>
         <height>60</height>
        </rect>
@@ -845,14 +963,14 @@ QPushButton:hover {
 </string>
       </property>
       <property name="text">
-       <string/>
+       <string>N</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_22">
+     <widget class="QPushButton" name="BongosMKeyPushButton">
       <property name="geometry">
        <rect>
-        <x>1230</x>
-        <y>190</y>
+        <x>1220</x>
+        <y>320</y>
         <width>51</width>
         <height>60</height>
        </rect>
@@ -874,14 +992,14 @@ QPushButton:hover {
 </string>
       </property>
       <property name="text">
-       <string/>
+       <string>M</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_14">
+     <widget class="QPushButton" name="Xylophone7KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>850</x>
-        <y>220</y>
+        <x>840</x>
+        <y>350</y>
         <width>25</width>
         <height>90</height>
        </rect>
@@ -896,14 +1014,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>7</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_15">
+     <widget class="QPushButton" name="Xylophone6KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>800</x>
-        <y>220</y>
+        <x>790</x>
+        <y>350</y>
         <width>30</width>
         <height>95</height>
        </rect>
@@ -918,14 +1036,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>6</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_16">
+     <widget class="QPushButton" name="Xylophone5KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>760</x>
-        <y>220</y>
+        <x>750</x>
+        <y>350</y>
         <width>26</width>
         <height>99</height>
        </rect>
@@ -940,14 +1058,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>5</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_17">
+     <widget class="QPushButton" name="Xylophone4KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>720</x>
-        <y>220</y>
+        <x>710</x>
+        <y>350</y>
         <width>23</width>
         <height>100</height>
        </rect>
@@ -962,14 +1080,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>4</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_18">
+     <widget class="QPushButton" name="Xylophone3KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>680</x>
-        <y>220</y>
+        <x>670</x>
+        <y>350</y>
         <width>23</width>
         <height>100</height>
        </rect>
@@ -984,14 +1102,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>3</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_19">
+     <widget class="QPushButton" name="Xylophone2KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>630</x>
-        <y>210</y>
+        <x>620</x>
+        <y>340</y>
         <width>26</width>
         <height>114</height>
        </rect>
@@ -1006,14 +1124,14 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>2</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_20">
+     <widget class="QPushButton" name="Xylophone1KeyPushButton">
       <property name="geometry">
        <rect>
-        <x>600</x>
-        <y>210</y>
+        <x>590</x>
+        <y>340</y>
         <width>16</width>
         <height>119</height>
        </rect>
@@ -1028,7 +1146,32 @@ QPushButton:hover{
 }</string>
       </property>
       <property name="text">
-       <string/>
+       <string>1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="MainTitelTextLabel">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>20</y>
+        <width>701</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Georgia</family>
+        <pointsize>25</pointsize>
+        <weight>75</weight>
+        <italic>true</italic>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Virtual Musical Instrumnets</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -1039,7 +1182,7 @@ QPushButton:hover{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1492</width>
+     <width>1497</width>
      <height>26</height>
     </rect>
    </property>
@@ -1053,6 +1196,10 @@ QPushButton:hover{
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../../../images.qrc">
+     <normaloff>:/image/icons/open.png</normaloff>:/image/icons/open.png</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
