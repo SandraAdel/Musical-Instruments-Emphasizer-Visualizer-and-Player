@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1497</width>
+    <width>1492</width>
     <height>922</height>
    </rect>
   </property>
@@ -43,20 +43,7 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="SongSpectrogramGridLayout">
-       <item row="1" column="0">
-        <widget class="PlotWidget" name="SongGraphGraphicsView">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(0, 0, 0);</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
+       <item row="0" column="1">
         <widget class="QLabel" name="SongGraphTextLabel">
          <property name="font">
           <font>
@@ -74,20 +61,7 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="PlotWidget" name="SpectrogramGraphGraphicsView">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgb(0, 0, 0);</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
+       <item row="0" column="3">
         <widget class="QLabel" name="SpectrogramGraphTextLabel">
          <property name="font">
           <font>
@@ -105,7 +79,7 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="0">
+       <item row="2" column="1">
         <layout class="QGridLayout" name="PlayPauseVolumeGridLayout">
          <item row="0" column="2">
           <widget class="QPushButton" name="VolumeIconPushButton">
@@ -124,24 +98,10 @@ border-radius:20px;
            </property>
           </widget>
          </item>
-         <item row="0" column="0">
-          <widget class="QPushButton" name="PlayPushButton">
-           <property name="styleSheet">
-            <string notr="true">QPushButton{
-border-radius:20px;
-	
-}
-QPushButton:hover{
- background-color: rgb(229,229,229);
-}
-</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="icon">
-            <iconset resource="../../../images.qrc">
-             <normaloff>:/image/icons/play.png</normaloff>:/image/icons/play.png</iconset>
+         <item row="0" column="4">
+          <widget class="QSlider" name="VolumeUpDownHorizontalSlider">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
          </item>
@@ -166,14 +126,87 @@ QPushButton:hover{
            </property>
           </widget>
          </item>
-         <item row="0" column="3">
-          <widget class="QSlider" name="VolumeUpDownHorizontalSlider">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="PlayPushButton">
+           <property name="styleSheet">
+            <string notr="true">QPushButton{
+border-radius:20px;
+	
+}
+QPushButton:hover{
+ background-color: rgb(229,229,229);
+}
+</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset resource="../../../images.qrc">
+             <normaloff>:/image/icons/play.png</normaloff>:/image/icons/play.png</iconset>
            </property>
           </widget>
          </item>
+         <item row="0" column="5">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Maximum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>600</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
+       </item>
+       <item row="2" column="3">
+        <spacer name="SpectrogramHorizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>550</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="3">
+        <widget class="PlotWidget" name="SpectrogramGraphWidget" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 0, 0);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="PlotWidget" name="SongGraphWidget" native="true">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(0, 0, 0);</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <spacer name="SongSpectrogramVerticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -1174,6 +1207,31 @@ QPushButton:hover{
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
+     <widget class="QComboBox" name="PianoSettingsComboBox">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>590</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Piano Settings</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Major</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Minor</string>
+       </property>
+      </item>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -1182,7 +1240,7 @@ QPushButton:hover{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1497</width>
+     <width>1492</width>
      <height>26</height>
     </rect>
    </property>
@@ -1208,8 +1266,9 @@ QPushButton:hover{
  <customwidgets>
   <customwidget>
    <class>PlotWidget</class>
-   <extends>QGraphicsView</extends>
-   <header>pyqtgraph.h</header>
+   <extends>QWidget</extends>
+   <header location="global">pyqtgraph</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
