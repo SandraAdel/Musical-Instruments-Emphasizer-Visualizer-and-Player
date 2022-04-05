@@ -10,6 +10,31 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+class Slider(QtWidgets.QSlider):
+    def mousePressEvent(self, event):
+        super(Slider, self).mousePressEvent(event)
+        if event.button() == QtCore.Qt.LeftButton:
+            val = self.pixelPosToRangeValue(event.pos())
+            self.setValue(val)
+
+    def pixelPosToRangeValue(self, pos):
+        opt = QtWidgets.QStyleOptionSlider()
+        self.initStyleOption(opt)
+        gr = self.style().subControlRect(QtWidgets.QStyle.CC_Slider, opt, QtWidgets.QStyle.SC_SliderGroove, self)
+        sr = self.style().subControlRect(QtWidgets.QStyle.CC_Slider, opt, QtWidgets.QStyle.SC_SliderHandle, self)
+
+        if self.orientation() == QtCore.Qt.Horizontal:
+            sliderLength = sr.width()
+            sliderMin = gr.x()
+            sliderMax = gr.right() - sliderLength + 1
+        else:
+            sliderLength = sr.height()
+            sliderMin = gr.y()
+            sliderMax = gr.bottom() - sliderLength + 1;
+        pr = pos - sr.center() + sr.topLeft()
+        p = pr.x() if self.orientation() == QtCore.Qt.Horizontal else pr.y()
+        return QtWidgets.QStyle.sliderValueFromPosition(self.minimum(), self.maximum(), p - sliderMin,
+                                               sliderMax - sliderMin, opt.upsideDown)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -63,7 +88,7 @@ class Ui_MainWindow(object):
         self.PlayPushButton.setIcon(icon1)
         self.PlayPushButton.setObjectName("PlayPushButton")
         self.PlayPauseVolumeGridLayout.addWidget(self.PlayPushButton, 0, 0, 1, 1)
-        self.VolumeUpDownHorizontalSlider = QtWidgets.QSlider(self.gridLayoutWidget)
+        self.VolumeUpDownHorizontalSlider = Slider(self.gridLayoutWidget)
         self.VolumeUpDownHorizontalSlider.setOrientation(QtCore.Qt.Horizontal)
         self.VolumeUpDownHorizontalSlider.setObjectName("VolumeUpDownHorizontalSlider")
         self.PlayPauseVolumeGridLayout.addWidget(self.VolumeUpDownHorizontalSlider, 0, 4, 1, 1)
@@ -175,7 +200,7 @@ class Ui_MainWindow(object):
         self.E_FlatClarinetImageLabel.setPixmap(QtGui.QPixmap("images/e-flat clarient.png"))
         self.E_FlatClarinetImageLabel.setObjectName("E_FlatClarinetImageLabel")
         self.InstrumentEmphasizerGridLayout.addWidget(self.E_FlatClarinetImageLabel, 3, 2, 1, 1)
-        self.TromboneGainVerticalSlider = QtWidgets.QSlider(self.gridLayoutWidget_3)
+        self.TromboneGainVerticalSlider = Slider(self.gridLayoutWidget_3)
         self.TromboneGainVerticalSlider.setMaximum(40)
         self.TromboneGainVerticalSlider.setProperty("value", 4)
         self.TromboneGainVerticalSlider.setSliderPosition(4)
@@ -193,13 +218,13 @@ class Ui_MainWindow(object):
         self.BassTitelLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.BassTitelLabel.setObjectName("BassTitelLabel")
         self.InstrumentEmphasizerGridLayout.addWidget(self.BassTitelLabel, 4, 0, 1, 1)
-        self.BassGainVerticalSlider = QtWidgets.QSlider(self.gridLayoutWidget_3)
+        self.BassGainVerticalSlider = Slider(self.gridLayoutWidget_3)
         self.BassGainVerticalSlider.setMaximum(40)
         self.BassGainVerticalSlider.setProperty("value", 4)
         self.BassGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
         self.BassGainVerticalSlider.setObjectName("BassGainVerticalSlider")
         self.InstrumentEmphasizerGridLayout.addWidget(self.BassGainVerticalSlider, 1, 0, 1, 1)
-        self.E_FlatClarinetGainVerticalSlider = QtWidgets.QSlider(self.gridLayoutWidget_3)
+        self.E_FlatClarinetGainVerticalSlider = Slider(self.gridLayoutWidget_3)
         self.E_FlatClarinetGainVerticalSlider.setMaximum(40)
         self.E_FlatClarinetGainVerticalSlider.setProperty("value", 4)
         self.E_FlatClarinetGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
@@ -233,13 +258,13 @@ class Ui_MainWindow(object):
         self.PiccoloGainValueTextLabel.setFont(font)
         self.PiccoloGainValueTextLabel.setObjectName("PiccoloGainValueTextLabel")
         self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloGainValueTextLabel, 2, 3, 1, 1)
-        self.PiccoloGainVerticalSlider = QtWidgets.QSlider(self.gridLayoutWidget_3)
+        self.PiccoloGainVerticalSlider = Slider(self.gridLayoutWidget_3)
         self.PiccoloGainVerticalSlider.setMaximum(40)
         self.PiccoloGainVerticalSlider.setProperty("value", 4)
         self.PiccoloGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
         self.PiccoloGainVerticalSlider.setObjectName("PiccoloGainVerticalSlider")
         self.InstrumentEmphasizerGridLayout.addWidget(self.PiccoloGainVerticalSlider, 1, 3, 1, 1)
-        self.ViolaGainVerticalSlider = QtWidgets.QSlider(self.gridLayoutWidget_3)
+        self.ViolaGainVerticalSlider = Slider(self.gridLayoutWidget_3)
         self.ViolaGainVerticalSlider.setMaximum(40)
         self.ViolaGainVerticalSlider.setProperty("value", 4)
         self.ViolaGainVerticalSlider.setOrientation(QtCore.Qt.Vertical)
