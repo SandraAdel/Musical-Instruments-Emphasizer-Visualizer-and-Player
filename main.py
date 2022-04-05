@@ -8,6 +8,12 @@ from GUI import Ui_MainWindow
 from scipy.io import wavfile
 import scipy.fft
 import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from scipy import signal
+from PyQt5.QtWidgets import*
+from matplotlib.backends.backend_qt5agg import FigureCanvas
+from matplotlib.figure import Figure
 
 
 class MainWindow(QMainWindow):
@@ -26,12 +32,17 @@ class MainWindow(QMainWindow):
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
         self.instrumentsUIElementsList = [ { "Instrument": "Bass", "Slider": self.ui.BassGainVerticalSlider, "Gain Value Label": self.ui.BassGainValueTextLabel }, { "Instrument": "Trombone", "Slider": self.ui.TromboneGainVerticalSlider, "Gain Value Label": self.ui.TromboneGainValueTextLabel }, { "Instrument": "E-Flat Clarinet", "Slider": self.ui.E_FlatClarinetGainVerticalSlider, "Gain Value Label": self.ui.E_FlatClarinetGainValueTextLabel }, { "Instrument": "Piccolo", "Slider": self.ui.PiccoloGainVerticalSlider, "Gain Value Label": self.ui.PiccoloGainValueTextLabel }, { "Instrument": "Viola", "Slider": self.ui.ViolaGainVerticalSlider, "Gain Value Label": self.ui.ViolaGainValueTextLabel } ]
 
+        self.figure = plt.figure(figsize=(15,5))
+        self.Canvas = FigureCanvas(self.figure)
+        self.ui.SpectrogramGridLayout.addWidget(self.Canvas,0, 0, 1, 1)
+
         # for instrumentDictionary in self.instrumentsUIElementsList:
         #     instrumentDictionary["Slider"].setMinimum(0)
         #     instrumentDictionary["Slider"].setMaximum(40)
         #     instrumentDictionary["Slider"].setValue(4)
         #     instrumentDictionary["Gain Value Label"].setText("1x")
 
+        
         # Links of GUI Elements to Methods:
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())
         for instrumentDictionary in self.instrumentsUIElementsList:
@@ -44,6 +55,7 @@ class MainWindow(QMainWindow):
         self.fileName = QtWidgets.QFileDialog.getOpenFileName(caption="Choose Music File", directory="", filter="wav (*.wav)")[0]
         if  self.fileName:
             self.samplingRate, self.originalMusicSignal = wavfile.read(self.fileName)
+            self.plotSpectrogram()
             self.fourierTransformOfOriginalMusicSignal = scipy.fft.rfft(self.originalMusicSignal)
 
     def EquilizeMusicSignal(self):
@@ -68,7 +80,13 @@ class MainWindow(QMainWindow):
         #------>>>>> FOR SEEING ONLY IF IT WORKS BEFORE IMPLEMENTING PLAY: TO REMOVED BEFORE SUBMISSION
         wavfile.write('Equilized Ode To Joy.wav', 48000, self.equilizedMusicSignal.astype(np.int16))
     
-
+    def plotSpectrogram(self):
+        # first = self.originalMusicSignal[:int(self.samplingRate*125)]
+        plt.specgram(self.originalMusicSignal, Fs=self.samplingRate)
+        plt.draw()
+        plt.xlabel('time (sec)')
+        plt.ylabel('frequency (Hz)')
+        self.Canvas.draw()
 
 # Global Functions
 
