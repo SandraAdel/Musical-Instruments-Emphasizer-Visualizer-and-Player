@@ -706,6 +706,26 @@ class Ui_MainWindow(object):
         }
         for btn, chr in pianoShortcuts.items():
             btn.setShortcut(_translate("MainWindow", chr))
+
+        xylophoneShortcuts ={
+                self.Xylophone1KeyPushButton:"1",
+                self.Xylophone2KeyPushButton:"2",
+                self.Xylophone3KeyPushButton:"3",
+                self.Xylophone4KeyPushButton:"4",
+                self.Xylophone5KeyPushButton:"5",
+                self.Xylophone6KeyPushButton:"6",
+                self.Xylophone7KeyPushButton:"7",
+                self.Xylophone8KeyPushButton:"8",
+        }
+        for btn, chr in xylophoneShortcuts.items():
+            btn.setShortcut(_translate("MainWindow", chr))
+        bongosShortcuts ={
+                self.BongosMKeyPushButton:"m",
+                self.BongosNKeyPushButton:"n",
+                
+        }
+        for btn, chr in bongosShortcuts.items():
+            btn.setShortcut(_translate("MainWindow", chr)) 
 from pyqtgraph import PlotWidget
 
 
