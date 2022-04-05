@@ -17,7 +17,6 @@ from matplotlib.figure import Figure
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
 from PyQt5.QtCore import Qt, QUrl
 import pandas as pd
-##############Roaa####################
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 import wave
@@ -51,11 +50,6 @@ class MainWindow(QMainWindow):
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
         self.instrumentsUIElementsList = [ { "Instrument": "Bass", "Slider": self.ui.BassGainVerticalSlider, "Gain Value Label": self.ui.BassGainValueTextLabel }, { "Instrument": "Trombone", "Slider": self.ui.TromboneGainVerticalSlider, "Gain Value Label": self.ui.TromboneGainValueTextLabel }, { "Instrument": "E-Flat Clarinet", "Slider": self.ui.E_FlatClarinetGainVerticalSlider, "Gain Value Label": self.ui.E_FlatClarinetGainValueTextLabel }, { "Instrument": "Piccolo", "Slider": self.ui.PiccoloGainVerticalSlider, "Gain Value Label": self.ui.PiccoloGainValueTextLabel }, { "Instrument": "Viola", "Slider": self.ui.ViolaGainVerticalSlider, "Gain Value Label": self.ui.ViolaGainValueTextLabel } ]
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-        # for instrumentDictionary in self.instrumentsUIElementsList:
-        #     instrumentDictionary["Slider"].setMinimum(0)
-        #     instrumentDictionary["Slider"].setMaximum(40)
-        #     instrumentDictionary["Slider"].setValue(4)
-        #     instrumentDictionary["Gain Value Label"].setText("1x")
 
         # Links of GUI Elements to Methods:
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())
@@ -81,7 +75,7 @@ class MainWindow(QMainWindow):
     # Methods
 
     def OpenFile(self):
-
+        self.ui.SongGraphGraphicsView.clear()
         self.fileName = QtWidgets.QFileDialog.getOpenFileName(caption="Choose Music File", directory="", filter="wav (*.wav)")[0]
         if  self.fileName:
             self.samplingRate, self.originalMusicSignal = wavfile.read(self.fileName) 
@@ -108,12 +102,12 @@ class MainWindow(QMainWindow):
         url = QUrl.fromLocalFile(file)
         content = QMediaContent(url)
         self.player.setMedia(content)
+        self.counter = 0
         self.play()
 
     def updatePlot(self):
-        # self.ui.SongGraphGraphicsView.clear()
+        self.ui.SongGraphGraphicsView.clear()
         increment = int((self.samplingRate/2))
-        print(self.samplingRate/2)
         self.ui.SongGraphGraphicsView.setYRange(min(self.signal),max(self.signal))
         self.ui.SongGraphGraphicsView.setXRange(self.time[self.counter],self.time[self.counter+increment] )
         self.ui.SongGraphGraphicsView.plot(self.time[self.counter:self.counter+increment], self.signal[self.counter:self.counter+increment])
@@ -153,9 +147,7 @@ class MainWindow(QMainWindow):
         self.plotSpectrogram(self.equilizedMusicSignal, self.samplingRate)
 
     def plotSpectrogram(self, sample, sample_rate):
-        # first = self.originalMusicSignal[:int(self.samplingRate*125)]
         plt.specgram(sample, Fs=sample_rate)
-        # plt.draw()
         plt.xlabel('time (sec)')
         plt.ylabel('frequency (Hz)')
         self.Canvas.draw()
@@ -348,11 +340,9 @@ class MainWindow(QMainWindow):
         self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (15).wav')))
         self.mediaPlayer.play()
 
-    ###########################################
 
 
 # Global Functions
-
 
 def FindIndexOfNearestValue(arrayToFindNearestValueIn, value):
     arrayToFindNearestValueIn = np.asarray(arrayToFindNearestValueIn)
