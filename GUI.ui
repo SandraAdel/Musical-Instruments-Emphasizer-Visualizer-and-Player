@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1489</width>
+    <width>1490</width>
     <height>959</height>
    </rect>
   </property>
@@ -1251,6 +1251,31 @@ QPushButton:hover{
        </property>
       </item>
      </widget>
+     <widget class="QComboBox" name="XylophoneSettingsComboBox">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>590</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Xylophone Settings</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Mode 1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Mode 2</string>
+       </property>
+      </item>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -1259,7 +1284,7 @@ QPushButton:hover{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1489</width>
+     <width>1490</width>
      <height>26</height>
     </rect>
    </property>

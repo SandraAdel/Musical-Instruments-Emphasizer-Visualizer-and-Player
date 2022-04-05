@@ -56,7 +56,7 @@ class MainWindow(QMainWindow):
         if  self.fileName:
             self.samplingRate, self.originalMusicSignal = wavfile.read(self.fileName)
             self.clearSpectrogram()
-            self.plotSpectrogram()
+            self.plotSpectrogram(self.originalMusicSignal, self.samplingRate)
             self.fourierTransformOfOriginalMusicSignal = scipy.fft.rfft(self.originalMusicSignal)
 
     def EquilizeMusicSignal(self):
@@ -77,13 +77,18 @@ class MainWindow(QMainWindow):
 
         fourierTransformOfEquilizedMusicSignal = musicSignalMagnitudeValues * np.exp(1j * musicSignalPhaseValues)  
         self.equilizedMusicSignal = np.fft.irfft(fourierTransformOfEquilizedMusicSignal)
-
+        ## Plot the spectrogram
+        self.clearSpectrogram()
+        self.plotSpectrogram(self.equilizedMusicSignal, self.samplingRate)
         #------>>>>> FOR SEEING ONLY IF IT WORKS BEFORE IMPLEMENTING PLAY: TO REMOVED BEFORE SUBMISSION
         wavfile.write('Equilized Ode To Joy.wav', 48000, self.equilizedMusicSignal.astype(np.int16))
+
+        
+
     
-    def plotSpectrogram(self):
+    def plotSpectrogram(self, sample, sample_rate):
         # first = self.originalMusicSignal[:int(self.samplingRate*125)]
-        plt.specgram(self.originalMusicSignal, Fs=self.samplingRate)
+        plt.specgram(sample, Fs=sample_rate)
         plt.draw()
         plt.xlabel('time (sec)')
         plt.ylabel('frequency (Hz)')

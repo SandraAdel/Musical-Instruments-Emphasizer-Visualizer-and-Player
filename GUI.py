@@ -39,7 +39,7 @@ class Slider(QtWidgets.QSlider):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1489, 959)
+        MainWindow.resize(1490, 959)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.MainTabWidget = QtWidgets.QTabWidget(self.centralwidget)
@@ -604,10 +604,16 @@ class Ui_MainWindow(object):
         self.PianoSettingsComboBox.addItem("")
         self.PianoSettingsComboBox.addItem("")
         self.PianoSettingsComboBox.addItem("")
+        self.XylophoneSettingsComboBox = QtWidgets.QComboBox(self.VirtualMusicalInstrumnetsTab)
+        self.XylophoneSettingsComboBox.setGeometry(QtCore.QRect(640, 590, 161, 31))
+        self.XylophoneSettingsComboBox.setObjectName("XylophoneSettingsComboBox")
+        self.XylophoneSettingsComboBox.addItem("")
+        self.XylophoneSettingsComboBox.addItem("")
+        self.XylophoneSettingsComboBox.addItem("")
         self.MainTabWidget.addTab(self.VirtualMusicalInstrumnetsTab, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1489, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1490, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -678,9 +684,28 @@ class Ui_MainWindow(object):
         self.PianoSettingsComboBox.setItemText(0, _translate("MainWindow", "Piano Settings"))
         self.PianoSettingsComboBox.setItemText(1, _translate("MainWindow", "Major"))
         self.PianoSettingsComboBox.setItemText(2, _translate("MainWindow", "Minor"))
+        self.XylophoneSettingsComboBox.setItemText(0, _translate("MainWindow", "Xylophone Settings"))
+        self.XylophoneSettingsComboBox.setItemText(1, _translate("MainWindow", "Mode 1"))
+        self.XylophoneSettingsComboBox.setItemText(2, _translate("MainWindow", "Mode 2"))
         self.MainTabWidget.setTabText(self.MainTabWidget.indexOf(self.VirtualMusicalInstrumnetsTab), _translate("MainWindow", " Musical Instrumnets "))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
+        pianoShortcuts ={
+                self.PianoAKeyPushButton:"a",
+                self.PianoCKeyPushButton:"c",
+                self.PianoBKeyPushButton:"b",
+                self.PianoDKeyPushButton:"d",
+                self.PianoEKeyPushButton:"e",
+                self.PianoFKeyPushButton:"f",
+                self.PianoGKeyPushButton:"g",
+                self.PianoQKeyPushButton:"q",
+                self.PianoWKeyPushButton:"w",
+                self.PianoRKeyPushButton:"r",
+                self.PianoTKeyPushButton:"t",
+                self.PianoZKeyPushButton:"z",
+        }
+        for btn, chr in pianoShortcuts.items():
+            btn.setShortcut(_translate("MainWindow", chr))
 from pyqtgraph import PlotWidget
 
 
