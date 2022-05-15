@@ -40,7 +40,7 @@ class Slider(QtWidgets.QSlider):
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(984, 718)
+        MainWindow.resize(994, 717)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.centralwidget)
@@ -58,13 +58,11 @@ class Ui_MainWindow(object):
         self.PlayerAndEmphasizerTab = QtWidgets.QWidget()
         self.PlayerAndEmphasizerTab.setStyleSheet("background-color: rgb(220, 221, 221);")
         self.PlayerAndEmphasizerTab.setObjectName("PlayerAndEmphasizerTab")
-        self.widget = QtWidgets.QWidget(self.PlayerAndEmphasizerTab)
-        self.widget.setGeometry(QtCore.QRect(10, 10, 941, 591))
-        self.widget.setObjectName("widget")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.InstrumentEmphasizerGroupBox = QtWidgets.QGroupBox(self.widget)
+        self.splitter_2 = QtWidgets.QSplitter(self.PlayerAndEmphasizerTab)
+        self.splitter_2.setGeometry(QtCore.QRect(11, 11, 941, 591))
+        self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter_2.setObjectName("splitter_2")
+        self.InstrumentEmphasizerGroupBox = QtWidgets.QGroupBox(self.splitter_2)
         font = QtGui.QFont()
         font.setFamily("Georgia")
         font.setPointSize(10)
@@ -537,8 +535,7 @@ class Ui_MainWindow(object):
         self.equaliseEmphasizerPushButton.setObjectName("equaliseEmphasizerPushButton")
         self.gridLayout_3.addWidget(self.equaliseEmphasizerPushButton, 4, 3, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_3)
-        self.horizontalLayout.addWidget(self.InstrumentEmphasizerGroupBox)
-        self.splitter = QtWidgets.QSplitter(self.widget)
+        self.splitter = QtWidgets.QSplitter(self.splitter_2)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
         self.layoutWidget = QtWidgets.QWidget(self.splitter)
@@ -661,6 +658,8 @@ class Ui_MainWindow(object):
         self.SpectrogramGraphGraphicsView.setStyleSheet("background-color: rgb(0, 0, 0);")
         self.SpectrogramGraphGraphicsView.setObjectName("SpectrogramGraphGraphicsView")
         self.spectrogramGridLayout.addWidget(self.SpectrogramGraphGraphicsView, 0, 0, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(525, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.spectrogramGridLayout.addItem(spacerItem4, 1, 0, 1, 1)
         self.spectrogramAndTitelGridLayout.addLayout(self.spectrogramGridLayout, 2, 1, 1, 1)
         self.SpectrogramGraphTextLabel = QtWidgets.QLabel(self.gridLayoutWidget_2)
         font = QtGui.QFont()
@@ -677,7 +676,6 @@ class Ui_MainWindow(object):
         self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line_2.setObjectName("line_2")
         self.spectrogramAndTitelGridLayout.addWidget(self.line_2, 0, 1, 1, 1)
-        self.horizontalLayout.addWidget(self.splitter)
         self.MainTabWidget.addTab(self.PlayerAndEmphasizerTab, "")
         self.VirtualMusicalInstrumnetsTab = QtWidgets.QWidget()
         self.VirtualMusicalInstrumnetsTab.setStyleSheet("background-color: rgb(220, 221, 221);")
@@ -1351,7 +1349,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addWidget(self.MainTabWidget)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 984, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 994, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -1446,6 +1444,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "File"))
         self.actionOpen.setText(_translate("MainWindow", "Open"))
         self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
+
     def showAndHideKey(self):
         _translate = QtCore.QCoreApplication.translate
         if self.pianoKeysPushButton.isChecked():
@@ -1498,7 +1497,6 @@ class Ui_MainWindow(object):
                 self.PianoTKeyPushButton.setShortcut(_translate("MainWindow", "R"))
                 self.PianoZKeyPushButton.setText(_translate("MainWindow", "Z"))
                 self.PianoZKeyPushButton.setShortcut(_translate("MainWindow", "T"))
-
 
 
 if __name__ == "__main__":

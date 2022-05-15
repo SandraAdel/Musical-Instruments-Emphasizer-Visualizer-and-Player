@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>984</width>
-    <height>718</height>
+    <width>994</width>
+    <height>717</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,649 +51,650 @@
        <attribute name="title">
         <string>Player &amp; Emphasizer</string>
        </attribute>
-       <widget class="QWidget" name="">
+       <widget class="QSplitter" name="splitter_2">
         <property name="geometry">
          <rect>
-          <x>10</x>
-          <y>10</y>
+          <x>11</x>
+          <y>11</y>
           <width>941</width>
           <height>591</height>
          </rect>
         </property>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QGroupBox" name="InstrumentEmphasizerGroupBox">
-           <property name="font">
-            <font>
-             <family>Georgia</family>
-             <pointsize>10</pointsize>
-            </font>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">QGroupBox {
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <widget class="QGroupBox" name="InstrumentEmphasizerGroupBox">
+         <property name="font">
+          <font>
+           <family>Georgia</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
 border: 1.2px solid #ffffff;
 border-radius: 2px;
 }</string>
-           </property>
-           <property name="title">
-            <string>Emphasizer Controls</string>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="title">
+          <string>Emphasizer Controls</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType">
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="2" column="3">
+             <widget class="QLabel" name="E_FlatClarinetGainValueTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
               </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Minimum</enum>
+              <property name="text">
+               <string>1x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="BassGainValueTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>1x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="QSlider" name="PiccoloGainVerticalSlider">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+                <horstretch>0</horstretch>
+                <verstretch>100</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal
+{
+border: 1px solid #bbb;
+background: white;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical
+{
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background-color:rgb(19,181,177);
+
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+height: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>40</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="5">
+             <widget class="QSlider" name="ViolaGainVerticalSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal
+{
+border: 1px solid #bbb;
+background: white;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical
+{
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background-color:rgb(19,181,177);
+
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+height: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>40</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QSlider" name="E_FlatClarinetGainVerticalSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal
+{
+border: 1px solid #bbb;
+background: white;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical
+{
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background-color:rgb(19,181,177);
+
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+height: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>40</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="BassMaximumFrequencyTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>128 Hz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="TromboneMaximumFrequencyTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>550 Hz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
+             <widget class="QLabel" name="ViolaMaximumFrequencyTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>20,000 Hz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="3">
+             <widget class="QLabel" name="E_FlatClarinetImageLabel">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../../../../../images.qrc">:/icons/icons/clarinet.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="5">
+             <widget class="QLabel" name="ViolaGainValueTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>1x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="BassImageLabel">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../../../../../images.qrc">:/icons/icons/double-bass.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>false</bool>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QLabel" name="PiccoloMaximumFrequencyTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>2000 Hz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QSlider" name="TromboneGainVerticalSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal
+{
+border: 1px solid #bbb;
+background: white;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical
+{
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background-color:rgb(19,181,177);
+
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+height: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>40</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+              <property name="sliderPosition">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+              <property name="invertedControls">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLabel" name="TromboneGainValueTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>1x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QLabel" name="PiccoloGainValueTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>1x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="2">
+             <widget class="QLabel" name="TromboneImageLabel">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap>../Musical-Instruments-Emphasizer/images/tromboneResize.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="4">
+             <widget class="QLabel" name="PiccoloImageLabel">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../../../../../images.qrc">:/icons/icons/piccolo1.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="E_FlatClarinetMaximumFrequencyTextLabel">
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>1000 Hz</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QSlider" name="BassGainVerticalSlider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal
+{
+border: 1px solid #bbb;
+background: white;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical
+{
+background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::add-page:vertical {
+background-color:rgb(19,181,177);
+
+border: 1px solid #777;
+width: 10px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
+border: 1px solid #777;
+height: 13px;
+margin-top: -2px;
+margin-bottom: -2px;
+border-radius: 4px;
+}
+
+QSlider::handle:vertical:hover {
+background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
+border: 1px solid #444;
+border-radius: 4px;
+}
+
+QSlider::sub-page:vertical:disabled {
+background: #bbb;
+border-color: #999;
+}
+
+QSlider::add-page:vertical:disabled {
+background: #eee;
+border-color: #999;
+}
+
+QSlider::handle:vertical:disabled {
+background: #eee;
+border: 1px solid #aaa;
+border-radius: 4px;
+}</string>
+              </property>
+              <property name="maximum">
+               <number>40</number>
+              </property>
+              <property name="value">
+               <number>4</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="4">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>40</width>
-                <height>20</height>
+                <width>20</width>
+                <height>40</height>
                </size>
               </property>
              </spacer>
             </item>
-            <item>
-             <layout class="QGridLayout" name="gridLayout_3">
-              <item row="2" column="3">
-               <widget class="QLabel" name="E_FlatClarinetGainValueTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1x</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="BassGainValueTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1x</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="4">
-               <widget class="QSlider" name="PiccoloGainVerticalSlider">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>100</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QSlider::groove:horizontal
-{
-border: 1px solid #bbb;
-background: white;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical
-{
-background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:vertical {
-background-color:rgb(19,181,177);
-
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-height: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:vertical:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:vertical:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-                </property>
-                <property name="maximum">
-                 <number>40</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="5">
-               <widget class="QSlider" name="ViolaGainVerticalSlider">
-                <property name="styleSheet">
-                 <string notr="true">QSlider::groove:horizontal
-{
-border: 1px solid #bbb;
-background: white;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical
-{
-background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:vertical {
-background-color:rgb(19,181,177);
-
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-height: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:vertical:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:vertical:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-                </property>
-                <property name="maximum">
-                 <number>40</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="3">
-               <widget class="QSlider" name="E_FlatClarinetGainVerticalSlider">
-                <property name="styleSheet">
-                 <string notr="true">QSlider::groove:horizontal
-{
-border: 1px solid #bbb;
-background: white;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical
-{
-background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:vertical {
-background-color:rgb(19,181,177);
-
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-height: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:vertical:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:vertical:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-                </property>
-                <property name="maximum">
-                 <number>40</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="BassMaximumFrequencyTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>128 Hz</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="2">
-               <widget class="QLabel" name="TromboneMaximumFrequencyTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>550 Hz</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="5">
-               <widget class="QLabel" name="ViolaMaximumFrequencyTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>20,000 Hz</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="3">
-               <widget class="QLabel" name="E_FlatClarinetImageLabel">
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../../../../../images.qrc">:/icons/icons/clarinet.png</pixmap>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="5">
-               <widget class="QLabel" name="ViolaGainValueTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1x</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="BassImageLabel">
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../../../../../images.qrc">:/icons/icons/double-bass.png</pixmap>
-                </property>
-                <property name="scaledContents">
-                 <bool>false</bool>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="4">
-               <widget class="QLabel" name="PiccoloMaximumFrequencyTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>2000 Hz</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="2">
-               <widget class="QSlider" name="TromboneGainVerticalSlider">
-                <property name="styleSheet">
-                 <string notr="true">QSlider::groove:horizontal
-{
-border: 1px solid #bbb;
-background: white;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical
-{
-background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:vertical {
-background-color:rgb(19,181,177);
-
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-height: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:vertical:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:vertical:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-                </property>
-                <property name="maximum">
-                 <number>40</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
-                </property>
-                <property name="sliderPosition">
-                 <number>4</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="invertedAppearance">
-                 <bool>false</bool>
-                </property>
-                <property name="invertedControls">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="2">
-               <widget class="QLabel" name="TromboneGainValueTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1x</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="4">
-               <widget class="QLabel" name="PiccoloGainValueTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1x</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="2">
-               <widget class="QLabel" name="TromboneImageLabel">
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap>../Musical-Instruments-Emphasizer/images/tromboneResize.png</pixmap>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="4">
-               <widget class="QLabel" name="PiccoloImageLabel">
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../../../../../images.qrc">:/icons/icons/piccolo1.png</pixmap>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="3">
-               <widget class="QLabel" name="E_FlatClarinetMaximumFrequencyTextLabel">
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
-                  <bold>false</bold>
-                 </font>
-                </property>
-                <property name="text">
-                 <string>1000 Hz</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QSlider" name="BassGainVerticalSlider">
-                <property name="styleSheet">
-                 <string notr="true">QSlider::groove:horizontal
-{
-border: 1px solid #bbb;
-background: white;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical
-{
-background: QLinearGradient( x1: 0, y1: 0, x2: 1, y2: 0, stop: 0 #fff, stop: 0.4999 #eee, stop: 0.5 #ddd, stop: 1 #eee );
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::add-page:vertical {
-background-color:rgb(19,181,177);
-
-border: 1px solid #777;
-width: 10px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #eee, stop:1 #ccc);
-border: 1px solid #777;
-height: 13px;
-margin-top: -2px;
-margin-bottom: -2px;
-border-radius: 4px;
-}
-
-QSlider::handle:vertical:hover {
-background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #fff, stop:1 #ddd);
-border: 1px solid #444;
-border-radius: 4px;
-}
-
-QSlider::sub-page:vertical:disabled {
-background: #bbb;
-border-color: #999;
-}
-
-QSlider::add-page:vertical:disabled {
-background: #eee;
-border-color: #999;
-}
-
-QSlider::handle:vertical:disabled {
-background: #eee;
-border: 1px solid #aaa;
-border-radius: 4px;
-}</string>
-                </property>
-                <property name="maximum">
-                 <number>40</number>
-                </property>
-                <property name="value">
-                 <number>4</number>
-                </property>
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="4">
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item row="3" column="5">
-               <widget class="QLabel" name="ViolaImageLabel">
-                <property name="text">
-                 <string/>
-                </property>
-                <property name="pixmap">
-                 <pixmap resource="../../../../../images.qrc">:/image/icons/ViolaNew.png</pixmap>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="3">
-               <widget class="QPushButton" name="equaliseEmphasizerPushButton">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="font">
-                 <font>
-                  <family>Georgia</family>
-                  <pointsize>10</pointsize>
-                  <weight>75</weight>
-                  <bold>true</bold>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true">QPushButton {
+            <item row="3" column="5">
+             <widget class="QLabel" name="ViolaImageLabel">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="../../../../../images.qrc">:/image/icons/ViolaNew.png</pixmap>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="3">
+             <widget class="QPushButton" name="equaliseEmphasizerPushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Georgia</family>
+                <pointsize>10</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
 	color: rgb(255, 255, 255);
 	border: 1.1px grey;
     border-radius: 10px;
@@ -708,45 +709,43 @@ QPushButton:hover {
 QPushButton:pressed {
 	background-color: rgb(0, 115, 101);
     }</string>
-                </property>
-                <property name="text">
-                 <string>Equalise</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+              </property>
+              <property name="text">
+               <string>Equalise</string>
+              </property>
+             </widget>
             </item>
            </layout>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSplitter" name="splitter">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <widget class="QWidget" name="layoutWidget">
-            <layout class="QGridLayout" name="mainGraphGridLayout">
-             <item row="2" column="2">
-              <widget class="QPushButton" name="VolumeIconPushButton">
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
+          </item>
+         </layout>
+        </widget>
+        <widget class="QSplitter" name="splitter">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <widget class="QWidget" name="layoutWidget">
+          <layout class="QGridLayout" name="mainGraphGridLayout">
+           <item row="2" column="2">
+            <widget class="QPushButton" name="VolumeIconPushButton">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
 border-radius:20px;
 	
 }</string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="../../../../../images.qrc">
-                 <normaloff>:/image/icons/speaker-filled-audio-tool.png</normaloff>:/image/icons/speaker-filled-audio-tool.png</iconset>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1">
-              <widget class="QPushButton" name="PlayAndPausePushButton">
-               <property name="styleSheet">
-                <string notr="true">QPushButton{
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../../../../images.qrc">
+               <normaloff>:/image/icons/speaker-filled-audio-tool.png</normaloff>:/image/icons/speaker-filled-audio-tool.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QPushButton" name="PlayAndPausePushButton">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
 border-radius:20px;
 	
 }
@@ -754,36 +753,36 @@ QPushButton:hover{
  background-color: rgb(188,188,188);
 }
 </string>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="icon">
-                <iconset resource="../../../../../images.qrc">
-                 <normaloff>:/image/icons/play.png</normaloff>:/image/icons/play.png</iconset>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="4">
-              <spacer name="horizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="2" column="3">
-              <widget class="QSlider" name="VolumeUpDownHorizontalSlider">
-               <property name="styleSheet">
-                <string notr="true">QSlider::groove:horizontal {
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+             <property name="icon">
+              <iconset resource="../../../../../images.qrc">
+               <normaloff>:/image/icons/play.png</normaloff>:/image/icons/play.png</iconset>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="4">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="2" column="3">
+            <widget class="QSlider" name="VolumeUpDownHorizontalSlider">
+             <property name="styleSheet">
+              <string notr="true">QSlider::groove:horizontal {
 border: 1px solid #bbb;
 background: white;
 height: 10px;
@@ -836,101 +835,115 @@ background: #eee;
 border: 1px solid #aaa;
 border-radius: 4px;
 }</string>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>30</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="0">
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="1" column="0" colspan="5">
-              <widget class="PlotWidget" name="SongGraphGraphicsView">
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="value">
+              <number>30</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <spacer name="horizontalSpacer_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0" colspan="5">
+            <widget class="PlotWidget" name="SongGraphGraphicsView">
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(0, 0, 0);</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="5">
+            <widget class="QLabel" name="SongGraphTextLabel">
+             <property name="font">
+              <font>
+               <family>Georgia</family>
+               <pointsize>13</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Song Graph</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="gridLayoutWidget_2">
+          <layout class="QGridLayout" name="spectrogramAndTitelGridLayout">
+           <item row="2" column="1">
+            <layout class="QGridLayout" name="spectrogramGridLayout">
+             <item row="0" column="0">
+              <widget class="PlotWidget" name="SpectrogramGraphGraphicsView">
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(0, 0, 0);</string>
                </property>
               </widget>
              </item>
-             <item row="0" column="0" colspan="5">
-              <widget class="QLabel" name="SongGraphTextLabel">
-               <property name="font">
-                <font>
-                 <family>Georgia</family>
-                 <pointsize>13</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Song Graph</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-           <widget class="QWidget" name="gridLayoutWidget_2">
-            <layout class="QGridLayout" name="spectrogramAndTitelGridLayout">
-             <item row="2" column="1">
-              <layout class="QGridLayout" name="spectrogramGridLayout">
-               <item row="0" column="0">
-                <widget class="PlotWidget" name="SpectrogramGraphGraphicsView">
-                 <property name="styleSheet">
-                  <string notr="true">background-color: rgb(0, 0, 0);</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLabel" name="SpectrogramGraphTextLabel">
-               <property name="font">
-                <font>
-                 <family>Georgia</family>
-                 <pointsize>13</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Spectrogram</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="Line" name="line_2">
+             <item row="1" column="0">
+              <spacer name="horizontalSpacer_4">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
-              </widget>
+               <property name="sizeType">
+                <enum>QSizePolicy::Fixed</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>525</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
-           </widget>
-          </widget>
-         </item>
-        </layout>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="SpectrogramGraphTextLabel">
+             <property name="font">
+              <font>
+               <family>Georgia</family>
+               <pointsize>13</pointsize>
+               <weight>75</weight>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="text">
+              <string>Spectrogram</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="Line" name="line_2">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
        </widget>
       </widget>
       <widget class="QWidget" name="VirtualMusicalInstrumnetsTab">
@@ -2417,7 +2430,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>984</width>
+     <width>994</width>
      <height>26</height>
     </rect>
    </property>
@@ -2458,7 +2471,7 @@ QPushButton:pressed {
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
