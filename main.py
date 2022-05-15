@@ -1,10 +1,14 @@
+########## Imports ##########
+
+#! check for repetition
+from re import T
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import pyqtgraph
 from pyqtgraph import PlotWidget
 import pandas as pd
-from GUI import Ui_MainWindow
+from GUINew import Ui_MainWindow
 from scipy.io import wavfile
 import scipy.fft
 import numpy as np
@@ -20,9 +24,11 @@ import pandas as pd
 from PyQt5.QtCore import QUrl
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 import wave
+import pygame
 
-global pianoMode 
-global xylophoneMode
+#! --------------------------------------------------------------------------------------------------------------------------------------------------- #
+
+                                                #?######### Class Definition ##########
 
 class MainWindow(QMainWindow):
 
@@ -30,69 +36,85 @@ class MainWindow(QMainWindow):
         super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-
-        # Variables Initialization
+        self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
+        self.setWindowTitle("Musical Instruments")
+        
+        ##########? Class Attributes Initialization ##########
+        
+        # initialize the sound library
+        pygame.mixer.pre_init(
+            channels=1, allowedchanges=0, buffer=512, frequency=44100)
+        pygame.mixer.init()
+        pygame.mixer.set_num_channels(65)
+        self.counter=0
+        self.play = True
         self.samplingRate = None
         self.originalMusicSignal = None
         self.equilizedMusicSignal = None
         self.fourierTransformOfOriginalMusicSignal = None
-        #################Roaa###################3
-        self.timer= QtCore.QTimer()
-        self.timer.setInterval(400)
-        self.player = QMediaPlayer()
-        self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-        self.ui.VolumeUpDownHorizontalSlider.setMinimum(0)
-        self.ui.VolumeUpDownHorizontalSlider.setMaximum(100)
-        self.ui.VolumeUpDownHorizontalSlider.setValue(30)
-        self.counter=0
-        self.timer.timeout.connect(self.updatePlot)
-
+        self.pianoMode = 'Major'
+        self.xylophoneMode = 'Mode 1'
+        self.pianoSettings()
+        self.xylophoneSettings()
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
         self.instrumentsUIElementsList = [ { "Instrument": "Bass", "Slider": self.ui.BassGainVerticalSlider, "Gain Value Label": self.ui.BassGainValueTextLabel }, { "Instrument": "Trombone", "Slider": self.ui.TromboneGainVerticalSlider, "Gain Value Label": self.ui.TromboneGainValueTextLabel }, { "Instrument": "E-Flat Clarinet", "Slider": self.ui.E_FlatClarinetGainVerticalSlider, "Gain Value Label": self.ui.E_FlatClarinetGainValueTextLabel }, { "Instrument": "Piccolo", "Slider": self.ui.PiccoloGainVerticalSlider, "Gain Value Label": self.ui.PiccoloGainValueTextLabel }, { "Instrument": "Viola", "Slider": self.ui.ViolaGainVerticalSlider, "Gain Value Label": self.ui.ViolaGainValueTextLabel } ]
+        self.timer= QtCore.QTimer()
+        self.player = QMediaPlayer()
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
-
-        # Links of GUI Elements to Methods:
+        self.timer.setInterval(400)
+        
+        #?######### Links of GUI Elements to Methods ##########
+        
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())
         for instrumentDictionary in self.instrumentsUIElementsList:
             instrumentDictionary["Slider"].valueChanged.connect(self.EquilizeMusicSignal)
-
-        
-        self.ui.PlayPushButton.clicked.connect(lambda: self.play())
-        self.ui.PausePushButton.clicked.connect(lambda: self.pause())
+        self.timer.timeout.connect(self.updatePlot)
+        self.ui.PlayAndPausePushButton.clicked.connect(lambda: self.palyAndPause())
         self.ui.VolumeUpDownHorizontalSlider.valueChanged.connect(lambda: self.changeVolume())
-        self.ui.BongosMKeyPushButton.clicked.connect(self.MBongo)
-        self.ui.BongosNKeyPushButton.clicked.connect(self.NBongo)
-        self.ui.Xylophone1KeyPushButton.clicked.connect(self.Xylophone1ToneA)
-        self.ui.Xylophone2KeyPushButton.clicked.connect(self.Xylophone2ToneA)
-        self.ui.Xylophone3KeyPushButton.clicked.connect(self.Xylophone3ToneA)
-        self.ui.Xylophone4KeyPushButton.clicked.connect(self.Xylophone4ToneA)
-        self.ui.Xylophone5KeyPushButton.clicked.connect(self.Xylophone5ToneA)
-        self.ui.Xylophone6KeyPushButton.clicked.connect(self.Xylophone6ToneA)
-        self.ui.Xylophone7KeyPushButton.clicked.connect(self.Xylophone7ToneA)
-        self.ui.Xylophone8KeyPushButton.clicked.connect(self.Xylophone8ToneA)
-        self.ui.PianoSettingsComboBox.currentIndexChanged.connect(lambda: self.pianoSettings(self.ui.PianoSettingsComboBox.currentIndex()))
-        self.ui.XylophoneSettingsComboBox.currentIndexChanged.connect(lambda: self.xylophoneSettings(self.ui.XylophoneSettingsComboBox.currentIndex()))
-    # Methods
+        self.ui.pianoKeysPushButton.clicked.connect(self.ui.showAndHideKey)
+        self.ui.equaliseEmphasizerPushButton.clicked.connect(self.equalise)
+        #!repetition
+        self.ui.BongosMKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo1.wav'))
+        self.ui.BongosNKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo2.wav'))
+        self.ui.pianoMajorPushButton.clicked.connect(self.pianoModes)
+        self.ui.pianoMinorPshButton.clicked.connect(self.pianoModes)
+        self.ui.pianoMajorPushButton.clicked.connect(self.pianoSettings)
+        self.ui.pianoMinorPshButton.clicked.connect(self.pianoSettings)
+        self.ui.XylophoneModeOnePushButton.clicked.connect(self.xylophoneModes)
+        self.ui.XylophoneModeTwoPushButton.clicked.connect(self.xylophoneModes)
+        self.ui.XylophoneModeOnePushButton.clicked.connect(self.xylophoneSettings)
+        self.ui.XylophoneModeTwoPushButton.clicked.connect(self.xylophoneSettings)
+
+#! ---------------------------------------------------------------------------------------------------------------------------------------------- #
+
+                                            ##########? Class Methods ##########
+
+                                        #?#######>> Tab 1 Player & Emphasizer <<########
+                                        
+    #?### Main Methods ####
 
     def OpenFile(self):
         self.ui.SongGraphGraphicsView.clear()
         self.fileName = QtWidgets.QFileDialog.getOpenFileName(caption="Choose Music File", directory="", filter="wav (*.wav)")[0]
         if  self.fileName:
             self.samplingRate, self.originalMusicSignal = wavfile.read(self.fileName) 
-            self.clearSpectrogram()
-            self.plotSpectrogram(self.originalMusicSignal, self.samplingRate)
+            self.clearAndPlotSpectrogram(self.originalMusicSignal, self.samplingRate)
             self.fourierTransformOfOriginalMusicSignal = scipy.fft.rfft(self.originalMusicSignal)
             self.playMusic(self.fileName)
 
-    def play(self):
-        self.timer.start()
-        self.player.play()
-
-    def pause(self):
-        self.player.pause()
-        self.timer.stop()
-
-
+    #! Check code repetition
+    def palyAndPause(self):
+        if self.ui.PlayAndPausePushButton.isChecked() and self.play == True:
+            self.timer.start()
+            self.player.play()
+            self.ui.PlayAndPausePushButton.setIcon(QtGui.QIcon('icons/pause.png'))
+            self.play = False
+        else:
+            self.player.pause()
+            self.timer.stop()
+            self.ui.PlayAndPausePushButton.setIcon(QtGui.QIcon('icons/play.png'))
+            self.play = True
+            
     def playMusic(self, file):
         spf = wave.open(file, "r")
         self.signal = spf.readframes(-1)
@@ -103,7 +125,8 @@ class MainWindow(QMainWindow):
         content = QMediaContent(url)
         self.player.setMedia(content)
         self.counter = 0
-        self.play()
+        self.play = True
+        self.palyAndPause()
 
     def updatePlot(self):
         self.ui.SongGraphGraphicsView.clear()
@@ -112,15 +135,13 @@ class MainWindow(QMainWindow):
         self.ui.SongGraphGraphicsView.setXRange(self.time[self.counter],self.time[self.counter+increment] )
         self.ui.SongGraphGraphicsView.plot(self.time[self.counter:self.counter+increment], self.signal[self.counter:self.counter+increment])
         self.counter+=increment
-
-   
+  
     def changeVolume(self):
         self.sliderValue=self.ui.VolumeUpDownHorizontalSlider.value()
         currentVolume = self.player.volume() 
         print(currentVolume)
         self.player.setVolume(self.sliderValue)
-        
-  
+         
     def EquilizeMusicSignal(self):
 
         musicSignalMagnitudeValues = np.abs(self.fourierTransformOfOriginalMusicSignal)
@@ -140,12 +161,6 @@ class MainWindow(QMainWindow):
         fourierTransformOfEquilizedMusicSignal = musicSignalMagnitudeValues * np.exp(1j * musicSignalPhaseValues)  
         self.equilizedMusicSignal = np.fft.irfft(fourierTransformOfEquilizedMusicSignal)
 
-        #------>>>>> FOR SEEING ONLY IF IT WORKS BEFORE IMPLEMENTING PLAY: TO REMOVED BEFORE SUBMISSION
-        wavfile.write('Equilized Ode To Joy.wav', 48000, self.equilizedMusicSignal.astype(np.int16))
-        self.playMusic('Equilized Ode To Joy.wav')
-        self.clearSpectrogram()
-        self.plotSpectrogram(self.equilizedMusicSignal, self.samplingRate)
-
     def plotSpectrogram(self, sample, sample_rate):
         plt.specgram(sample, Fs=sample_rate)
         plt.xlabel('time (sec)')
@@ -155,203 +170,106 @@ class MainWindow(QMainWindow):
     def clearSpectrogram(self):
         self.figure = plt.figure(figsize=(15,5))
         self.Canvas = FigureCanvas(self.figure)
-        self.ui.SpectrogramGridLayout.addWidget(self.Canvas,0, 0, 1, 1)
+        self.ui.spectrogramGridLayout.addWidget(self.Canvas,0, 0, 1, 1)
+     
+    def equalise(self):
+        wavfile.write('Equilized Ode To Joy.wav', 48000, self.equilizedMusicSignal.astype(np.int16))
+        self.playMusic('Equilized Ode To Joy.wav')
+        self.clearAndPlotSpectrogram(self.equilizedMusicSignal, self.samplingRate)
 
-    ######################## TAB 2 #######################################
+#! --------------------------------------------------------------------------------------------------------------------------------------------- #
 
-    def pianoSettings(self,index):
-        global pianoMode
-        pianoMode=index
-        if (index==1):
-          self.ui.PianoCKeyPushButton.clicked.connect(self.CkeyMajor)
-          self.ui.PianoDKeyPushButton.clicked.connect(self.DkeyMajor)
-          self.ui.PianoEKeyPushButton.clicked.connect(self.EkeyMajor)
-          self.ui.PianoFKeyPushButton.clicked.connect(self.FkeyMajor) 
-          self.ui.PianoGKeyPushButton.clicked.connect(self.GkeyMajor) 
-          self.ui.PianoAKeyPushButton.clicked.connect(self.AkeyMajor) 
-          self.ui.PianoBKeyPushButton.clicked.connect(self.BkeyMajor)
-          self.ui.PianoQKeyPushButton.clicked.connect(self.C_keyMajor)
-          self.ui.PianoWKeyPushButton.clicked.connect(self.D_keyMajor)
-          self.ui.PianoRKeyPushButton.clicked.connect(self.F_keyMajor)
-          self.ui.PianoTKeyPushButton.clicked.connect(self.G_keyMajor)
-          self.ui.PianoZKeyPushButton.clicked.connect(self.A_keyMajor)
-        elif (index==2):
-          self.ui.PianoCKeyPushButton.clicked.connect(self.Ckey)
-          self.ui.PianoDKeyPushButton.clicked.connect(self.Dkey)
-          self.ui.PianoEKeyPushButton.clicked.connect(self.Ekey)
-          self.ui.PianoFKeyPushButton.clicked.connect(self.Fkey) 
-          self.ui.PianoGKeyPushButton.clicked.connect(self.Gkey) 
-          self.ui.PianoAKeyPushButton.clicked.connect(self.Akey) 
-          self.ui.PianoBKeyPushButton.clicked.connect(self.Bkey)
-          self.ui.PianoQKeyPushButton.clicked.connect(self.C_key)
-          self.ui.PianoWKeyPushButton.clicked.connect(self.D_key)
-          self.ui.PianoRKeyPushButton.clicked.connect(self.F_key)
-          self.ui.PianoTKeyPushButton.clicked.connect(self.G_key)
-          self.ui.PianoZKeyPushButton.clicked.connect(self.A_key)
+                                            #?#####>> Tab 2 Virtual  Musical Instrumnets <<######
+    
+    #?### Main Methods ####
 
-    def xylophoneSettings(self,index):
-        global xylophoneMode
-        xylophoneMode=index
-        if (index==1):
-          self.ui.Xylophone1KeyPushButton.clicked.connect(self.Xylophone1ToneA)
-          self.ui.Xylophone2KeyPushButton.clicked.connect(self.Xylophone2ToneA)
-          self.ui.Xylophone3KeyPushButton.clicked.connect(self.Xylophone3ToneA)
-          self.ui.Xylophone4KeyPushButton.clicked.connect(self.Xylophone4ToneA)
-          self.ui.Xylophone5KeyPushButton.clicked.connect(self.Xylophone5ToneA)
-          self.ui.Xylophone6KeyPushButton.clicked.connect(self.Xylophone6ToneA)
-          self.ui.Xylophone7KeyPushButton.clicked.connect(self.Xylophone7ToneA)
-          self.ui.Xylophone8KeyPushButton.clicked.connect(self.Xylophone8ToneA)
-        elif (index==2):
-          self.ui.Xylophone1KeyPushButton.clicked.connect(self.Xylophone1ToneB)
-          self.ui.Xylophone2KeyPushButton.clicked.connect(self.Xylophone2ToneB)
-          self.ui.Xylophone3KeyPushButton.clicked.connect(self.Xylophone3ToneB)
-          self.ui.Xylophone4KeyPushButton.clicked.connect(self.Xylophone4ToneB)
-          self.ui.Xylophone5KeyPushButton.clicked.connect(self.Xylophone5ToneB)
-          self.ui.Xylophone6KeyPushButton.clicked.connect(self.Xylophone6ToneB)
-          self.ui.Xylophone7KeyPushButton.clicked.connect(self.Xylophone7ToneB)
-          self.ui.Xylophone8KeyPushButton.clicked.connect(self.Xylophone8ToneB)
+    def pianoModes(self):
+        if self.ui.pianoMinorPshButton.isChecked(): self.pianoMode = 'Minor'
+        else: self.pianoMode = 'Major'
+    
+    #!repetition
+    def pianoSettings(self):
+        if self.pianoMode == 'Major':
+            self.ui.PianoCKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-c_C_major.wav'))
+            self.ui.PianoDKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-d_D_major.wav'))
+            self.ui.PianoEKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-e_E_major.wav'))
+            self.ui.PianoFKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-f_F_major.wav')) 
+            self.ui.PianoGKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-g_G_major.wav')) 
+            self.ui.PianoAKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-a_A_major.wav')) 
+            self.ui.PianoBKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-b_B_major.wav'))
+            self.ui.PianoQKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-c_C#_major.wav'))
+            self.ui.PianoWKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-eb_D#_major.wav'))
+            self.ui.PianoRKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-f_F#_major.wav'))
+            self.ui.PianoTKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-g_G#_major.wav'))
+            self.ui.PianoZKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-bb_A#_major.wav'))
+        elif self.pianoMode == 'Minor':
+            self.ui.PianoCKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-11.wav'))
+            self.ui.PianoDKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-12.wav'))
+            self.ui.PianoEKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-13.wav'))
+            self.ui.PianoFKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-14.wav')) 
+            self.ui.PianoGKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-15.wav')) 
+            self.ui.PianoAKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-16.wav')) 
+            self.ui.PianoBKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-17.wav'))
+            self.ui.PianoQKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano110.wav'))
+            self.ui.PianoWKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano111.wav'))
+            self.ui.PianoRKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano112.wav'))
+            self.ui.PianoTKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano113.wav'))
+            self.ui.PianoZKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano114.wav'))
 
+    def xylophoneModes(self):
+        if self.ui.XylophoneModeOnePushButton.isChecked(): self.xylophoneMode = 'Mode 1'
+        else: self.xylophoneMode = 'Mode 2'
 
+    #!repetition
+    def xylophoneSettings(self):
+        if self.xylophoneMode == 'Mode 1':
+          self.ui.Xylophone1KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto1.wav'))
+          self.ui.Xylophone2KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto2.wav'))
+          self.ui.Xylophone3KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto3.wav'))
+          self.ui.Xylophone4KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto4.wav'))
+          self.ui.Xylophone5KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto5.wav'))
+          self.ui.Xylophone6KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto6.wav'))
+          self.ui.Xylophone7KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto7.wav'))
+          self.ui.Xylophone8KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto8.wav'))
+        elif self.xylophoneMode == 'Mode 2':
+          self.ui.Xylophone1KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_1.wav'))
+          self.ui.Xylophone2KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_2.wav'))
+          self.ui.Xylophone3KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_3.wav'))
+          self.ui.Xylophone4KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_4.wav'))
+          self.ui.Xylophone5KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_5.wav'))
+          self.ui.Xylophone6KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_6.wav'))
+          self.ui.Xylophone7KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_7.wav'))
+          self.ui.Xylophone8KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_8.wav'))  
 
-    def Ckey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-11.wav')))
-        self.mediaPlayer.play()
-    def Dkey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-12.wav')))
-        self.mediaPlayer.play() 
-    def Ekey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-13.wav')))
-        self.mediaPlayer.play()   
-    def Fkey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-14.wav')))
-        self.mediaPlayer.play()          
-    def Gkey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-15.wav')))
-        self.mediaPlayer.play() 
-    def Akey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-16.wav')))
-        self.mediaPlayer.play()     
-    def Bkey(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-17.wav')))
-        self.mediaPlayer.play() 
-    def C_key(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano110.wav')))
-        self.mediaPlayer.play()
-    def D_key(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano111.wav')))
-        self.mediaPlayer.play()         
-    def F_key(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano112.wav')))
-        self.mediaPlayer.play()
-    def G_key(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano113.wav')))
-        self.mediaPlayer.play() 
-    def A_key(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano114.wav')))
-        self.mediaPlayer.play()       
-    def A_keyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-bb_A#_major.wav')))
-        self.mediaPlayer.play()  
-    def AkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-a_A_major.wav')))
-        self.mediaPlayer.play()  
-    def BkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-b_B_major.wav')))
-        self.mediaPlayer.play()  
-    def CkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-c_C_major.wav')))
-        self.mediaPlayer.play()  
-    def C_keyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-c_C#_major.wav')))
-        self.mediaPlayer.play()  
-    def DkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-d_D_major.wav')))
-        self.mediaPlayer.play()                 
-    def D_keyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-eb_D#_major.wav')))
-        self.mediaPlayer.play()
-    def EkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-e_E_major.wav')))
-        self.mediaPlayer.play() 
-    def FkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-f_F_major.wav')))
-        self.mediaPlayer.play()      
-    def F_keyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-f_F#_major.wav')))
-        self.mediaPlayer.play()       
-    def GkeyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-g_G_major.wav')))
-        self.mediaPlayer.play()   
-    def G_keyMajor(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'piano/Piano-g_G#_major.wav')))
-        self.mediaPlayer.play()     
-    def MBongo(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'bongos/Bongos_bongo1.wav')))
-        self.mediaPlayer.play()     
-    def NBongo(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'bongos/Bongos_bongo2.wav')))
-        self.mediaPlayer.play()    
-    def Xylophone1ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (1).wav')))
-        self.mediaPlayer.play()
-    def Xylophone2ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (2).wav')))
-        self.mediaPlayer.play()                
-    def Xylophone3ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (3).wav')))
-        self.mediaPlayer.play()
-    def Xylophone4ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (4).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone5ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (5).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone6ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (6).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone7ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (7).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone8ToneA(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (8).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone1ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (8).wav')))
-        self.mediaPlayer.play()
-    def Xylophone2ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (9).wav')))
-        self.mediaPlayer.play()
-    def Xylophone3ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (10).wav')))
-        self.mediaPlayer.play()     
-    def Xylophone4ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (11).wav')))
-        self.mediaPlayer.play()       
-    def Xylophone5ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (12).wav')))
-        self.mediaPlayer.play()        
-    def Xylophone6ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (13).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone7ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (14).wav')))
-        self.mediaPlayer.play()    
-    def Xylophone8ToneB(self):
-        self.mediaPlayer.setMedia(QMediaContent(QUrl.fromLocalFile(r'xylophone/Xylophone_C (15).wav')))
-        self.mediaPlayer.play()
+#! -------------------------------------------------------------------------------------------------------------------------------------------- #
+ 
+                                                    ######?>> General Helper Functions: <<######
+ 
+    # Load a Wave File and Play it using Mixer
+    def mixerPlay(self, file):
+        pygame.mixer.music.load(file)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.play()
 
+    # Clearing Spectrogram Before Plot
+    def clearAndPlotSpectrogram(self, signal, samplingRate):
+        self.clearSpectrogram()
+        self.plotSpectrogram(signal, samplingRate)
 
-
-# Global Functions
+#! --------------------------------------------------------------------------------------------------------------------------------------------- #
+                                                   
+                                                    #?#####>> Global Functions: <<######
 
 def FindIndexOfNearestValue(arrayToFindNearestValueIn, value):
     arrayToFindNearestValueIn = np.asarray(arrayToFindNearestValueIn)
     indexOfNearestValue = (np.abs(arrayToFindNearestValueIn - value)).argmin()
     return indexOfNearestValue
 
+#?######### Application Main ##########
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     win = MainWindow()
     win.show()
     sys.exit(app.exec_())
+    
