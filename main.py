@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 import pyqtgraph
 from pyqtgraph import PlotWidget
 import pandas as pd
-from GUINew import Ui_MainWindow
+from GUI import Ui_MainWindow
 from scipy.io import wavfile
 import scipy.fft
 import numpy as np
