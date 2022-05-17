@@ -54,28 +54,62 @@ class MainWindow(QMainWindow):
         self.fourierTransformOfOriginalMusicSignal = None
         self.pianoMode = 'Major'
         self.xylophoneMode = 'Mode 1'
-        self.pianoSettings()
-        self.xylophoneSettings()
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
         self.instrumentsUIElementsList = [ { "Instrument": "Bass", "Slider": self.ui.BassGainVerticalSlider, "Gain Value Label": self.ui.BassGainValueTextLabel }, { "Instrument": "Trombone", "Slider": self.ui.TromboneGainVerticalSlider, "Gain Value Label": self.ui.TromboneGainValueTextLabel }, { "Instrument": "E-Flat Clarinet", "Slider": self.ui.E_FlatClarinetGainVerticalSlider, "Gain Value Label": self.ui.E_FlatClarinetGainValueTextLabel }, { "Instrument": "Piccolo", "Slider": self.ui.PiccoloGainVerticalSlider, "Gain Value Label": self.ui.PiccoloGainValueTextLabel }, { "Instrument": "Viola", "Slider": self.ui.ViolaGainVerticalSlider, "Gain Value Label": self.ui.ViolaGainValueTextLabel } ]
         self.timer= QtCore.QTimer()
         self.player = QMediaPlayer()
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.timer.setInterval(400)
+        self.pianoButtonsAndSoundsList = [{"Button": self.ui.PianoCKeyPushButton, "Major": 'piano/Piano-c_C_major.wav', "Minor":'piano/Piano-11.wav'},
+                                        {"Button": self.ui.PianoDKeyPushButton, "Major": 'piano/Piano-d_D_major.wav', "Minor": 'piano/Piano-12.wav'},
+                                        {"Button": self.ui.PianoEKeyPushButton, "Major": 'piano/Piano-e_E_major.wav', "Minor": 'piano/Piano-13.wav'},
+                                        {"Button": self.ui.PianoFKeyPushButton, "Major": 'piano/Piano-f_F_major.wav', "Minor": 'piano/Piano-14.wav'},
+                                        {"Button": self.ui.PianoGKeyPushButton, "Major": 'piano/Piano-g_G_major.wav', "Minor":'piano/Piano-15.wav'},
+                                        {"Button": self.ui.PianoAKeyPushButton, "Major": 'piano/Piano-a_A_major.wav', "Minor": 'piano/Piano-16.wav'},
+                                        {"Button": self.ui.PianoBKeyPushButton, "Major": 'piano/Piano-b_B_major.wav', "Minor": 'piano/Piano-17.wav'},
+                                        {"Button": self.ui.PianoQKeyPushButton, "Major": 'piano/Piano-c_C#_major.wav', "Minor": 'piano/Piano110.wav'},
+                                        {"Button": self.ui.PianoWKeyPushButton, "Major": 'piano/Piano-eb_D#_major.wav', "Minor": 'piano/Piano111.wav'},
+                                        {"Button": self.ui.PianoRKeyPushButton, "Major": 'piano/Piano-f_F#_major.wav', "Minor": 'piano/Piano112.wav'},
+                                        {"Button": self.ui.PianoTKeyPushButton, "Major": 'piano/Piano113.wav', "Minor":'piano/Piano113.wav'},
+                                        {"Button": self.ui.PianoZKeyPushButton, "Major": 'piano/Piano-bb_A#_major.wav', "Minor": 'piano/Piano114.wav'}]
         
+        self.xylophoneButtonsAndSoundsList = [{"Button": self.ui.Xylophone1KeyPushButton,"Mode 1":'xylophone/alto1.wav',"Mode 2":'xylophone/mode2_1.wav'},
+                                            {"Button": self.ui.Xylophone2KeyPushButton,"Mode 1":'xylophone/alto2.wav',"Mode 2": 'xylophone/mode2_2.wav'},
+                                            {"Button": self.ui.Xylophone3KeyPushButton,"Mode 1":'xylophone/alto3.wav',"Mode 2":'xylophone/mode2_3.wav'},
+                                            {"Button": self.ui.Xylophone4KeyPushButton,"Mode 1":'xylophone/alto4.wav',"Mode 2":'xylophone/mode2_4.wav'},
+                                            {"Button": self.ui.Xylophone5KeyPushButton,"Mode 1":'xylophone/alto5.wav',"Mode 2":'xylophone/mode2_5.wav'},
+                                            {"Button": self.ui.Xylophone6KeyPushButton,"Mode 1":'xylophone/alto6.wav',"Mode 2":'xylophone/mode2_6.wav'},
+                                            {"Button": self.ui.Xylophone7KeyPushButton,"Mode 1":'xylophone/alto7.wav',"Mode 2":'xylophone/mode2_7.wav'},
+                                            {"Button": self.ui.Xylophone8KeyPushButton,"Mode 1":'xylophone/alto8.wav',"Mode 2":'xylophone/mode2_8.wav'}]
+        self.bongosButtonsAndSoundsList = [{"Button": self.ui.BongosMKeyPushButton,"Sound":'bongos/Bongos_bongo1.wav'},
+                                            {"Button": self.ui.BongosNKeyPushButton,"Sound":'bongos/Bongos_bongo2.wav'}]
+        # self.functionsConnectionList = [{"Button": self.ui.PlayAndPausePushButton,"Function":self.palyAndPause()},
+                                        # {"Button": self.ui.pianoKeysPushButton,"Function":self.ui.showAndHideKey()},
+                                        # {"Button": self.ui.equaliseEmphasizerPushButton,"Function":self.equalise()}]#,
+                                        # {"Button": self.ui.pianoMajorPushButton,"Function":self.pianoModes},
+        #                                 {"Button": self.ui.pianoMinorPshButton,"Function":self.pianoModes},
+        #                                 {"Button": ,"Function":},
+        #                                 {"Button": ,"Function":},
+        #                                 {"Button": ,"Function":},
+        #                                 {"Button": ,"Function":},
+        #                                 {"Button": ,"Function":},
+        #                                 {"Button": ,"Function":}]
+        self.instrumentsModesList = [{"Button": self.ui.pianoMinorPshButton, "instrument mode":self.pianoMode},{"Button": self.ui.XylophoneModeOnePushButton, "instrument mode":self.xylophoneMode}]
+        self.pianoSettings()
+        # self.xylophoneSettings()
+
         #?######### Links of GUI Elements to Methods ##########
         
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())
-        for instrumentDictionary in self.instrumentsUIElementsList:
-            instrumentDictionary["Slider"].valueChanged.connect(self.EquilizeMusicSignal)
         self.timer.timeout.connect(self.updatePlot)
-        self.ui.PlayAndPausePushButton.clicked.connect(lambda: self.palyAndPause())
         self.ui.VolumeUpDownHorizontalSlider.valueChanged.connect(lambda: self.changeVolume())
+        
+        #!repetition
+        # for functionKeyDictionary in self.functionsConnectionList:
+            # functionKeyDictionary["Button"].clicked.connect(lambda: functionKeyDictionary["Function"])
+        self.ui.PlayAndPausePushButton.clicked.connect(lambda: self.palyAndPause())
         self.ui.pianoKeysPushButton.clicked.connect(self.ui.showAndHideKey)
         self.ui.equaliseEmphasizerPushButton.clicked.connect(self.equalise)
-        #!repetition
-        self.ui.BongosMKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo1.wav'))
-        self.ui.BongosNKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo2.wav'))
         self.ui.pianoMajorPushButton.clicked.connect(self.pianoModes)
         self.ui.pianoMinorPshButton.clicked.connect(self.pianoModes)
         self.ui.pianoMajorPushButton.clicked.connect(self.pianoSettings)
@@ -84,6 +118,20 @@ class MainWindow(QMainWindow):
         self.ui.XylophoneModeTwoPushButton.clicked.connect(self.xylophoneModes)
         self.ui.XylophoneModeOnePushButton.clicked.connect(self.xylophoneSettings)
         self.ui.XylophoneModeTwoPushButton.clicked.connect(self.xylophoneSettings)
+
+        for instrumentDictionary in self.instrumentsUIElementsList:
+            instrumentDictionary["Slider"].valueChanged.connect(self.EquilizeMusicSignal)
+        # for pianoButtons in self.pianoButtonsAndSoundsList:
+        #     pianoButtons["Button"].clicked.connect(self.pianoSettings)
+        #!repetition
+        #?CHECK WITH SANDRA
+        for bongosKeyDictionary in self.bongosButtonsAndSoundsList:
+            bongosKeyDictionary["Button"].clicked.connect(lambda: self.mixerPlay(bongosKeyDictionary["Sound"]))
+            print(bongosKeyDictionary["Button"])
+        # self.ui.BongosMKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo1.wav'))
+        # self.ui.BongosNKeyPushButton.clicked.connect(lambda: self.mixerPlay('bongos/Bongos_bongo2.wav'))
+        
+        
 
 #! ---------------------------------------------------------------------------------------------------------------------------------------------- #
 
@@ -182,65 +230,34 @@ class MainWindow(QMainWindow):
                                             #?#####>> Tab 2 Virtual  Musical Instrumnets <<######
     
     #?### Main Methods ####
-
+    #!repetition
     def pianoModes(self):
         if self.ui.pianoMinorPshButton.isChecked(): self.pianoMode = 'Minor'
         else: self.pianoMode = 'Major'
     
-    #!repetition
-    def pianoSettings(self):
-        if self.pianoMode == 'Major':
-            self.ui.PianoCKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-c_C_major.wav'))
-            self.ui.PianoDKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-d_D_major.wav'))
-            self.ui.PianoEKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-e_E_major.wav'))
-            self.ui.PianoFKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-f_F_major.wav')) 
-            self.ui.PianoGKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-g_G_major.wav')) 
-            self.ui.PianoAKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-a_A_major.wav')) 
-            self.ui.PianoBKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-b_B_major.wav'))
-            self.ui.PianoQKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-c_C#_major.wav'))
-            self.ui.PianoWKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-eb_D#_major.wav'))
-            self.ui.PianoRKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-f_F#_major.wav'))
-            self.ui.PianoTKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-g_G#_major.wav'))
-            self.ui.PianoZKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-bb_A#_major.wav'))
-        elif self.pianoMode == 'Minor':
-            self.ui.PianoCKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-11.wav'))
-            self.ui.PianoDKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-12.wav'))
-            self.ui.PianoEKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-13.wav'))
-            self.ui.PianoFKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-14.wav')) 
-            self.ui.PianoGKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-15.wav')) 
-            self.ui.PianoAKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-16.wav')) 
-            self.ui.PianoBKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano-17.wav'))
-            self.ui.PianoQKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano110.wav'))
-            self.ui.PianoWKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano111.wav'))
-            self.ui.PianoRKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano112.wav'))
-            self.ui.PianoTKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano113.wav'))
-            self.ui.PianoZKeyPushButton.clicked.connect(lambda: self.mixerPlay('piano/Piano114.wav'))
-
     def xylophoneModes(self):
         if self.ui.XylophoneModeOnePushButton.isChecked(): self.xylophoneMode = 'Mode 1'
         else: self.xylophoneMode = 'Mode 2'
+        # self.modes(self.ui.XylophoneModeOnePushButton, self.xylophoneMode)
+        # print(self.xylophoneMode)
+    
+    def modes(self, button, instrumentMode):
+        if button.isChecked(): instrumentMode = 'Mode 1'
+        else: instrumentMode = 'Mode 2'
+        
 
     #!repetition
-    def xylophoneSettings(self):
-        if self.xylophoneMode == 'Mode 1':
-          self.ui.Xylophone1KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto1.wav'))
-          self.ui.Xylophone2KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto2.wav'))
-          self.ui.Xylophone3KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto3.wav'))
-          self.ui.Xylophone4KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto4.wav'))
-          self.ui.Xylophone5KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto5.wav'))
-          self.ui.Xylophone6KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto6.wav'))
-          self.ui.Xylophone7KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto7.wav'))
-          self.ui.Xylophone8KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/alto8.wav'))
-        elif self.xylophoneMode == 'Mode 2':
-          self.ui.Xylophone1KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_1.wav'))
-          self.ui.Xylophone2KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_2.wav'))
-          self.ui.Xylophone3KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_3.wav'))
-          self.ui.Xylophone4KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_4.wav'))
-          self.ui.Xylophone5KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_5.wav'))
-          self.ui.Xylophone6KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_6.wav'))
-          self.ui.Xylophone7KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_7.wav'))
-          self.ui.Xylophone8KeyPushButton.clicked.connect(lambda: self.mixerPlay('xylophone/mode2_8.wav'))  
+    def pianoSettings(self):
+        for pianoKeyDictionary in self.pianoButtonsAndSoundsList:
+            
+            pianoKeyDictionary["Button"].clicked.connect(lambda: self.mixerPlay(pianoKeyDictionary[self.pianoMode]))
 
+    
+    def xylophoneSettings(self):
+        for xylophoneKeyDictionary in self.xylophoneButtonsAndSoundsList:
+            xylophoneKeyDictionary["Button"].clicked.connect(lambda: self.mixerPlay(xylophoneKeyDictionary[self.xylophoneMode]))  
+        print(xylophoneKeyDictionary["Button"])
+    
 #! -------------------------------------------------------------------------------------------------------------------------------------------- #
  
                                                     ######?>> General Helper Functions: <<######
@@ -248,7 +265,7 @@ class MainWindow(QMainWindow):
     # Load a Wave File and Play it using Mixer
     def mixerPlay(self, file):
         pygame.mixer.music.load(file)
-        pygame.mixer.music.play(-1)
+        # pygame.mixer.music.play(-1)
         pygame.mixer.music.play()
 
     # Clearing Spectrogram Before Plot
