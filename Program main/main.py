@@ -245,7 +245,7 @@ class MainWindow(QMainWindow):
 #! --------------------------------------------------------------------------------------------------------------------------------------------- #
                                                    
                                                     #?#####>> Global Functions: <<######
-#!ASK SAAAAAAAANDRAAAAAAAAA
+                                                    
 #
 def FindIndexOfNearestValue(arrayToFindNearestValueIn, value):
     arrayToFindNearestValueIn = np.asarray(arrayToFindNearestValueIn)
