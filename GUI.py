@@ -1446,6 +1446,7 @@ class Ui_MainWindow(object):
         self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
 
     def showAndHideKey(self):
+        print('key')
         _translate = QtCore.QCoreApplication.translate
         if self.pianoKeysPushButton.isChecked():
                 self.PianoAKeyPushButton.setText(_translate("MainWindow", ""))
