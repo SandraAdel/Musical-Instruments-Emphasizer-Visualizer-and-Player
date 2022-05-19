@@ -46,13 +46,13 @@ class MainWindow(QMainWindow):
         self.xylophoneMode = 'Alto'
         self.originalMusicSignal = None
         self.equilizedMusicSignal = None
-        self.timer.setInterval(400)
         self.fourierTransformOfOriginalMusicSignal = None
         pygame.mixer.pre_init(
             channels=1, allowedchanges=0, buffer=512, frequency=44100)
         pygame.mixer.init()
         pygame.mixer.set_num_channels(65)
         self.timer= QtCore.QTimer()
+        self.timer.setInterval(400)
         self.player = QMediaPlayer()
         self.mediaPlayer = QMediaPlayer(None, QMediaPlayer.VideoSurface)
         self.instrumentsDataList = [ { "Instrument": "Bass", "Starting Frequency": 0, "Ending Frequency": 128, "Gain": 1 }, { "Instrument": "Trombone", "Starting Frequency": 128, "Ending Frequency": 550, "Gain": 0 }, { "Instrument": "E-Flat Clarinet", "Starting Frequency": 550, "Ending Frequency": 1000, "Gain": 0 }, { "Instrument": "Piccolo", "Starting Frequency": 1000, "Ending Frequency": 2000, "Gain": 1 }, { "Instrument": "Viola", "Starting Frequency": 2000, "Ending Frequency": 20000, "Gain": 1 } ]
@@ -60,7 +60,7 @@ class MainWindow(QMainWindow):
         self.pianoButtonsAndSoundsList = [{"Button": self.ui.PianoCKeyPushButton, "Major": 'piano/Piano-c_C_major.wav', "Minor":'piano/Piano-11.wav', 'Text': 'A'},{"Button": self.ui.PianoDKeyPushButton, "Major": 'piano/Piano-d_D_major.wav', "Minor": 'piano/Piano-12.wav', 'Text': 'S'},{"Button": self.ui.PianoEKeyPushButton, "Major": 'piano/Piano-e_E_major.wav', "Minor": 'piano/Piano-13.wav', 'Text': 'D'},{"Button": self.ui.PianoFKeyPushButton, "Major": 'piano/Piano-f_F_major.wav', "Minor": 'piano/Piano-14.wav', 'Text': 'F'},{"Button": self.ui.PianoGKeyPushButton, "Major": 'piano/Piano-g_G_major.wav', "Minor":'piano/Piano-15.wav', 'Text': 'G'},{"Button": self.ui.PianoAKeyPushButton, "Major": 'piano/Piano-a_A_major.wav', "Minor": 'piano/Piano-16.wav', 'Text': 'H'},{"Button": self.ui.PianoBKeyPushButton, "Major": 'piano/Piano-b_B_major.wav', "Minor": 'piano/Piano-17.wav', 'Text': 'J'},{"Button": self.ui.PianoQKeyPushButton, "Major": 'piano/Piano-c_C#_major.wav', "Minor": 'piano/Piano110.wav', 'Text': 'Q'},{"Button": self.ui.PianoWKeyPushButton, "Major": 'piano/Piano-eb_D#_major.wav', "Minor": 'piano/Piano111.wav', 'Text': 'W'},{"Button": self.ui.PianoRKeyPushButton, "Major": 'piano/Piano-f_F#_major.wav', "Minor": 'piano/Piano112.wav', 'Text': 'E'},{"Button": self.ui.PianoTKeyPushButton, "Major": 'piano/Piano-g_G#_major.wav', "Minor":'piano/Piano113.wav', 'Text': 'R'},{"Button": self.ui.PianoZKeyPushButton, "Major": 'piano/Piano-bb_A#_major.wav', "Minor": 'piano/Piano114.wav', 'Text': 'T'}]
         self.xylophoneButtonsAndSoundsList = [{"Button": self.ui.Xylophone1KeyPushButton,"Alto":'xylophone/alto1.wav',"Soprano":'xylophone/mode2_1.wav', 'Text':'1'},{"Button": self.ui.Xylophone2KeyPushButton,"Alto":'xylophone/alto2.wav',"Soprano": 'xylophone/mode2_2.wav', 'Text':'2'},{"Button": self.ui.Xylophone3KeyPushButton,"Alto":'xylophone/alto3.wav',"Soprano":'xylophone/mode2_3.wav', 'Text':'3'},{"Button": self.ui.Xylophone4KeyPushButton,"Alto":'xylophone/alto4.wav',"Soprano":'xylophone/mode2_4.wav', 'Text':'4'},{"Button": self.ui.Xylophone5KeyPushButton,"Alto":'xylophone/alto5.wav',"Soprano":'xylophone/mode2_5.wav', 'Text':'5'},{"Button": self.ui.Xylophone6KeyPushButton,"Alto":'xylophone/alto6.wav',"Soprano":'xylophone/mode2_6.wav', 'Text':'6'},{"Button": self.ui.Xylophone7KeyPushButton,"Alto":'xylophone/alto7.wav',"Soprano":'xylophone/mode2_7.wav', 'Text':'7'},{"Button": self.ui.Xylophone8KeyPushButton,"Alto":'xylophone/alto8.wav',"Soprano":'xylophone/mode2_8.wav', 'Text':'8'}]
         self.bongosButtonsAndSoundsList = [{"Button": self.ui.BongosMKeyPushButton,"Sound":'bongos/Bongos_bongo1.wav', 'Text':'M'},{"Button": self.ui.BongosNKeyPushButton,"Sound":'bongos/Bongos_bongo2.wav', 'Text':'N'}]
-        # self.uiElementsAndFunctionList = [{"Button" : self.ui.equaliseEmphasizerPushButton, "Function": self.equalise},{"Button": self.ui.pianoMajorPushButton, "Function":self.pianoSettings},{"Function":self.ui.pianoMinorPshButton,"Function":self.pianoSettings},{"Button":self.ui.XylophoneAltoModePushButton,"Function":self.xylophoneSettings},{"Button":self.ui.XylophoneSopranoModePushButton,"Function":self.xylophoneSettings}]
+        self.uiElementsAndFunctionList = [{"Button" : self.ui.equaliseEmphasizerPushButton, "Function": self.equalise},{"Button": self.ui.pianoMajorPushButton, "Function":self.pianoSettings},{"Button":self.ui.pianoMinorPshButton,"Function":self.pianoSettings},{"Button":self.ui.XylophoneAltoModePushButton,"Function":self.xylophoneSettings},{"Button":self.ui.XylophoneSopranoModePushButton,"Function":self.xylophoneSettings}]
         self.pianoSettings()
         self.xylophoneSettings()
         
@@ -68,15 +68,10 @@ class MainWindow(QMainWindow):
         
         self.timer.timeout.connect(self.updatePlot)
         self.ui.actionOpen.triggered.connect(lambda: self.OpenFile())       
-        self.ui.pianoMinorPshButton.clicked.connect(self.pianoSettings)
-        self.ui.pianoMajorPushButton.clicked.connect(self.pianoSettings)
-        self.ui.equaliseEmphasizerPushButton.clicked.connect(self.equalise)
         self.ui.PlayAndPausePushButton.clicked.connect(lambda: self.playAndPause())
-        self.ui.XylophoneAltoModePushButton.clicked.connect(self.xylophoneSettings)
-        self.ui.XylophoneSopranoModePushButton.clicked.connect(self.xylophoneSettings)
         self.ui.VolumeUpDownHorizontalSlider.valueChanged.connect(lambda: self.changeVolume())
-        # for uiElementDictionary in self.uiElementsAndFunctionList:
-        #     uiElementDictionary["Button"].clicked.connect(uiElementDictionary["Function"])
+        for uiElementDictionary in self.uiElementsAndFunctionList:
+            uiElementDictionary["Button"].clicked.connect(uiElementDictionary["Function"])
         for instrumentDictionary in self.instrumentsUIElementsList:
             instrumentDictionary["Slider"].valueChanged.connect(self.EquilizeMusicSignal)
         for bongosKeyDictionary in self.bongosButtonsAndSoundsList:
@@ -245,14 +240,14 @@ class MainWindow(QMainWindow):
 #! --------------------------------------------------------------------------------------------------------------------------------------------- #
                                                    
                                                     #?#####>> Global Functions: <<######
-                                                    
-#
+
+# Given an array and a value, the function finds the index of the element nearest to this value
 def FindIndexOfNearestValue(arrayToFindNearestValueIn, value):
     arrayToFindNearestValueIn = np.asarray(arrayToFindNearestValueIn)
     indexOfNearestValue = (np.abs(arrayToFindNearestValueIn - value)).argmin()
     return indexOfNearestValue
 
-#
+# Given a list of dictionaries, the dictionary in which a certain key value pair is found, is returned
 def GetDictionaryByKeyValuePair(dictionaries_list, key_to_search_by, value_to_search_by):
         dictionary_to_find = {}
         for dictionary in dictionaries_list:
