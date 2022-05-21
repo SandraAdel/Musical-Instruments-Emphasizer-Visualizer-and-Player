@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from pyqtgraph import PlotWidget
-
 class Slider(QtWidgets.QSlider):
     def mousePressEvent(self, event):
         super(Slider, self).mousePressEvent(event)
@@ -931,14 +930,8 @@ class Ui_MainWindow(object):
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.pianoKeysPushButton = QtWidgets.QPushButton(self.pianoGroupBox)
-        self.pianoKeysPushButton.setGeometry(QtCore.QRect(90, 40, 81, 31))
-        self.pianoKeysPushButton.setStyleSheet("color: rgb(255, 255, 255);\n"
-"background-color: rgb(71, 72, 74);")
-        self.pianoKeysPushButton.setCheckable(True)
-        self.pianoKeysPushButton.setObjectName("pianoKeysPushButton")
         self.pianoMajorPushButton = QtWidgets.QPushButton(self.pianoGroupBox)
-        self.pianoMajorPushButton.setGeometry(QtCore.QRect(400, 40, 81, 31))
+        self.pianoMajorPushButton.setGeometry(QtCore.QRect(190, 40, 81, 31))
         self.pianoMajorPushButton.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(71, 72, 74);")
         self.pianoMajorPushButton.setCheckable(True)
@@ -948,20 +941,12 @@ class Ui_MainWindow(object):
         self.buttonGroup.setObjectName("buttonGroup")
         self.buttonGroup.addButton(self.pianoMajorPushButton)
         self.pianoMinorPshButton = QtWidgets.QPushButton(self.pianoGroupBox)
-        self.pianoMinorPshButton.setGeometry(QtCore.QRect(520, 40, 81, 31))
+        self.pianoMinorPshButton.setGeometry(QtCore.QRect(360, 40, 81, 31))
         self.pianoMinorPshButton.setStyleSheet("color: rgb(255, 255, 255);\n"
 "background-color: rgb(71, 72, 74);")
         self.pianoMinorPshButton.setCheckable(True)
         self.pianoMinorPshButton.setObjectName("pianoMinorPshButton")
         self.buttonGroup.addButton(self.pianoMinorPshButton)
-        self.pianoPrintNamesLabel = QtWidgets.QLabel(self.pianoGroupBox)
-        self.pianoPrintNamesLabel.setGeometry(QtCore.QRect(250, 30, 91, 41))
-        self.pianoPrintNamesLabel.setStyleSheet("background-color: rgb(218, 218, 218);\n"
-"color: rgb(0, 0, 0);\n"
-"border: 3px solid rgb(71, 72, 74);\n"
-"")
-        self.pianoPrintNamesLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.pianoPrintNamesLabel.setObjectName("pianoPrintNamesLabel")
         self.label_5 = QtWidgets.QLabel(self.pianoTab)
         self.label_5.setGeometry(QtCore.QRect(30, 40, 61, 61))
         self.label_5.setText("")
@@ -1139,19 +1124,16 @@ class Ui_MainWindow(object):
 "    background-color: rgb(139, 47, 47);\n"
 "    }")
         self.Xylophone1KeyPushButton.setObjectName("Xylophone1KeyPushButton")
-        self.XylophoneModeOnePushButton = QtWidgets.QPushButton(self.xylophoneTab)
-        self.XylophoneModeOnePushButton.setGeometry(QtCore.QRect(240, 70, 111, 41))
+        self.XylophoneAltoModePushButton = QtWidgets.QPushButton(self.xylophoneTab)
+        self.XylophoneAltoModePushButton.setGeometry(QtCore.QRect(240, 70, 111, 41))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.XylophoneModeOnePushButton.setFont(font)
-        self.XylophoneModeOnePushButton.setStyleSheet("QPushButton {\n"
+        self.XylophoneAltoModePushButton.setFont(font)
+        self.XylophoneAltoModePushButton.setStyleSheet("QPushButton {\n"
 "    color: rgb(255, 255, 255);\n"
-"    border: 1.1px grey;\n"
-"    border-radius: 10px;\n"
-"    border-style: outset;\n"
 "    background-color: rgb(140, 44, 145);\n"
 "    }\n"
 "\n"
@@ -1162,24 +1144,22 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(97, 30, 100);\n"
 "    }")
-        self.XylophoneModeOnePushButton.setCheckable(True)
-        self.XylophoneModeOnePushButton.setObjectName("XylophoneModeOnePushButton")
+        self.XylophoneAltoModePushButton.setCheckable(True)
+        self.XylophoneAltoModePushButton.setChecked(True)
+        self.XylophoneAltoModePushButton.setObjectName("XylophoneAltoModePushButton")
         self.buttonGroup_2 = QtWidgets.QButtonGroup(MainWindow)
         self.buttonGroup_2.setObjectName("buttonGroup_2")
-        self.buttonGroup_2.addButton(self.XylophoneModeOnePushButton)
-        self.XylophoneModeTwoPushButton = QtWidgets.QPushButton(self.xylophoneTab)
-        self.XylophoneModeTwoPushButton.setGeometry(QtCore.QRect(390, 70, 111, 41))
+        self.buttonGroup_2.addButton(self.XylophoneAltoModePushButton)
+        self.XylophoneSopranoModePushButton = QtWidgets.QPushButton(self.xylophoneTab)
+        self.XylophoneSopranoModePushButton.setGeometry(QtCore.QRect(390, 70, 111, 41))
         font = QtGui.QFont()
         font.setFamily("Gabriola")
         font.setPointSize(14)
         font.setBold(False)
         font.setWeight(50)
-        self.XylophoneModeTwoPushButton.setFont(font)
-        self.XylophoneModeTwoPushButton.setStyleSheet("QPushButton {\n"
+        self.XylophoneSopranoModePushButton.setFont(font)
+        self.XylophoneSopranoModePushButton.setStyleSheet("QPushButton {\n"
 "    color: rgb(255, 255, 255);\n"
-"    border: 1.1px grey;\n"
-"    border-radius: 10px;\n"
-"    border-style: outset;\n"
 "    background-color: rgb(140, 44, 145);\n"
 "    }\n"
 "\n"
@@ -1190,9 +1170,9 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {\n"
 "    background-color: rgb(97, 30, 100);\n"
 "    }")
-        self.XylophoneModeTwoPushButton.setCheckable(True)
-        self.XylophoneModeTwoPushButton.setObjectName("XylophoneModeTwoPushButton")
-        self.buttonGroup_2.addButton(self.XylophoneModeTwoPushButton)
+        self.XylophoneSopranoModePushButton.setCheckable(True)
+        self.XylophoneSopranoModePushButton.setObjectName("XylophoneSopranoModePushButton")
+        self.buttonGroup_2.addButton(self.XylophoneSopranoModePushButton)
         self.XylophoneLabel = QtWidgets.QLabel(self.xylophoneTab)
         self.XylophoneLabel.setGeometry(QtCore.QRect(280, 20, 201, 31))
         font = QtGui.QFont()
@@ -1368,7 +1348,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.MainTabWidget.setCurrentIndex(0)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -1413,10 +1393,8 @@ class Ui_MainWindow(object):
         self.PianoTKeyPushButton.setShortcut(_translate("MainWindow", "R"))
         self.PianoQKeyPushButton.setText(_translate("MainWindow", "Q"))
         self.PianoQKeyPushButton.setShortcut(_translate("MainWindow", "Q"))
-        self.pianoKeysPushButton.setText(_translate("MainWindow", "Keys"))
         self.pianoMajorPushButton.setText(_translate("MainWindow", "Major"))
         self.pianoMinorPshButton.setText(_translate("MainWindow", "Minor"))
-        self.pianoPrintNamesLabel.setText(_translate("MainWindow", "Play"))
         self.Xylophone8KeyPushButton.setText(_translate("MainWindow", "8"))
         self.Xylophone8KeyPushButton.setShortcut(_translate("MainWindow", "8"))
         self.Xylophone7KeyPushButton.setText(_translate("MainWindow", "7"))
@@ -1433,8 +1411,8 @@ class Ui_MainWindow(object):
         self.Xylophone2KeyPushButton.setShortcut(_translate("MainWindow", "2"))
         self.Xylophone1KeyPushButton.setText(_translate("MainWindow", "1"))
         self.Xylophone1KeyPushButton.setShortcut(_translate("MainWindow", "1"))
-        self.XylophoneModeOnePushButton.setText(_translate("MainWindow", "Mode 1"))
-        self.XylophoneModeTwoPushButton.setText(_translate("MainWindow", "Mode 2 "))
+        self.XylophoneAltoModePushButton.setText(_translate("MainWindow", "Alto"))
+        self.XylophoneSopranoModePushButton.setText(_translate("MainWindow", "Soprano"))
         self.XylophoneLabel.setText(_translate("MainWindow", "Choose a Tone Set"))
         self.BongosNKeyPushButton.setText(_translate("MainWindow", "N"))
         self.BongosNKeyPushButton.setShortcut(_translate("MainWindow", "N"))
@@ -1445,58 +1423,6 @@ class Ui_MainWindow(object):
         self.actionOpen.setText(_translate("MainWindow", "Open"))
         self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
 
-    def showAndHideKey(self):
-        _translate = QtCore.QCoreApplication.translate
-        if self.pianoKeysPushButton.isChecked():
-                self.PianoAKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoAKeyPushButton.setShortcut(_translate("MainWindow", "H"))
-                self.PianoBKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoBKeyPushButton.setShortcut(_translate("MainWindow", "J"))
-                self.PianoCKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoCKeyPushButton.setShortcut(_translate("MainWindow", "A"))
-                self.PianoDKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoDKeyPushButton.setShortcut(_translate("MainWindow", "W"))
-                self.PianoEKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoEKeyPushButton.setShortcut(_translate("MainWindow", "D"))
-                self.PianoFKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoFKeyPushButton.setShortcut(_translate("MainWindow", "F"))
-                self.PianoGKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoGKeyPushButton.setShortcut(_translate("MainWindow", "G"))
-                self.PianoQKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoQKeyPushButton.setShortcut(_translate("MainWindow", "Q"))
-                self.PianoWKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoWKeyPushButton.setShortcut(_translate("MainWindow", "W"))
-                self.PianoRKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoRKeyPushButton.setShortcut(_translate("MainWindow", "E"))
-                self.PianoTKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoTKeyPushButton.setShortcut(_translate("MainWindow", "R"))
-                self.PianoZKeyPushButton.setText(_translate("MainWindow", ""))
-                self.PianoZKeyPushButton.setShortcut(_translate("MainWindow", "T"))
-        else:
-                self.PianoAKeyPushButton.setText(_translate("MainWindow", "A"))
-                self.PianoAKeyPushButton.setShortcut(_translate("MainWindow", "H"))
-                self.PianoBKeyPushButton.setText(_translate("MainWindow", "B"))
-                self.PianoBKeyPushButton.setShortcut(_translate("MainWindow", "J"))
-                self.PianoCKeyPushButton.setText(_translate("MainWindow", "C"))
-                self.PianoCKeyPushButton.setShortcut(_translate("MainWindow", "A"))
-                self.PianoDKeyPushButton.setText(_translate("MainWindow", "D"))
-                self.PianoDKeyPushButton.setShortcut(_translate("MainWindow", "S"))
-                self.PianoEKeyPushButton.setText(_translate("MainWindow", "E"))
-                self.PianoEKeyPushButton.setShortcut(_translate("MainWindow", "D"))
-                self.PianoFKeyPushButton.setText(_translate("MainWindow", "F"))
-                self.PianoFKeyPushButton.setShortcut(_translate("MainWindow", "F"))
-                self.PianoGKeyPushButton.setText(_translate("MainWindow", "G"))
-                self.PianoGKeyPushButton.setShortcut(_translate("MainWindow", "G"))
-                self.PianoQKeyPushButton.setText(_translate("MainWindow", "Q"))
-                self.PianoQKeyPushButton.setShortcut(_translate("MainWindow", "Q"))
-                self.PianoWKeyPushButton.setText(_translate("MainWindow", "W"))
-                self.PianoWKeyPushButton.setShortcut(_translate("MainWindow", "W"))
-                self.PianoRKeyPushButton.setText(_translate("MainWindow", "R"))
-                self.PianoRKeyPushButton.setShortcut(_translate("MainWindow", "E"))
-                self.PianoTKeyPushButton.setText(_translate("MainWindow", "T"))
-                self.PianoTKeyPushButton.setShortcut(_translate("MainWindow", "R"))
-                self.PianoZKeyPushButton.setText(_translate("MainWindow", "Z"))
-                self.PianoZKeyPushButton.setShortcut(_translate("MainWindow", "T"))
 
 
 if __name__ == "__main__":
