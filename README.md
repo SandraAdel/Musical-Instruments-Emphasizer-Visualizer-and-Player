@@ -1,4 +1,4 @@
-# Musical-Instruments-Emphasizer
+# Musical-Instruments-Emphasizer-Visualizer-and-Player
 ## Desktop Application - Written in Python (pyqt5)
 Appliction of signal processing in music industry:
 1) Manipulating frequency ranges of different instruments in music piece.
